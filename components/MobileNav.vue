@@ -80,7 +80,7 @@ nav {
 }
 
 .logo-text {
-  @include function.typography(1.5rem, 400, Gilroy-Bold, #0065fe, 2rem, start);
+  @include function.typography(1.5rem, 400, GilroyBold, #0065fe, 1.5rem, start);
 }
 
 .login {

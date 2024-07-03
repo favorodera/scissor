@@ -15,7 +15,7 @@ const mobileNavStore = useMobileNavigationStore()
         <div class="login-and-escape-container">
           <button class="login">Login</button>
           <button class="close-btn" @click="mobileNavStore.toggleMobileNav">
-            <img src="../../media/icons/escape.svg" alt="escape" />
+            <img src="../media/icons/escape.svg" alt="escape" />
           </button>
         </div>
       </nav></div

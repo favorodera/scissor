@@ -1,3 +1,21 @@
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const windowWidth = ref(window.innerWidth)
+
+const windowResize = () => {
+  windowWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+  window.addEventListener('resize', windowResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', windowResize)
+})
+</script>
+
 <template>
   <div class="intro">
     <div class="intro-text-container">
@@ -11,6 +29,29 @@
         user engagement.
       </p>
     </div>
+    <div class="intro-cta-container">
+      <button class="intro-cta-button">Get Started</button>
+      <a href="" class="intro-cta-text">Learn More</a>
+    </div>
+  </div>
+
+  <div class="hero-visuals-container">
+    <div class="hero-visual-image">
+      <div class="coupled-links">
+        <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
+        <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
+        <div class="link" v-if="windowWidth >= 450">
+          <img src="../media/svg/link.svg" alt="link" />
+        </div>
+      </div>
+      <div class="arrow"><img src="../media/svg/arrow.svg" alt="arrow" /></div>
+      <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
+    </div>
+    <p class="hero-visual-text">
+      Seamlessly transform your long <span class="hero-visual-text-highlight">URLs</span> into
+      <span class="hero-visual-text-highlight">concise</span> and
+      <span class="hero-visual-text-highlight">shareable</span> links with just few clicks.
+    </p>
   </div>
 </template>
 
@@ -47,5 +88,87 @@
 .intro-description {
   @include function.typography(1.125rem, 400, GilroyMedium, #141414, 1.75rem, center);
   max-width: 48.8125rem;
+}
+
+.intro-cta-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3.5rem;
+}
+
+.intro-cta-button {
+  @include function.typography(1rem, 400, GilroySemiBold, #ffffff, 0.75rem, center);
+  background: #0065fe;
+  padding: 0.75rem 1.5rem;
+  border: 0.065rem solid transparent;
+  border-radius: 0.25rem;
+  transition: all 0.5s ease-in-out;
+}
+
+.intro-cta-button:hover {
+  background: transparent;
+  border: 0.065rem solid #0065fe;
+  color: #0065fe;
+}
+
+.intro-cta-text {
+  @include function.typography(1rem, 400, GilroySemiBold, #141414, 0.75rem, center);
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.intro-cta-text:hover {
+  color: #005ae2;
+}
+
+.hero-visuals-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 5rem;
+  gap: 1rem;
+  padding: 0.25rem;
+  border-radius: 1.5rem;
+  border: 0.03125rem solid #005ae2;
+  max-width: 48rem;
+  flex: 1 1 auto;
+}
+
+.hero-visual-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.125rem;
+}
+
+.coupled-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :nth-child(2),
+  :nth-child(3) {
+    margin-left: -0.5rem;
+  }
+}
+
+.link {
+  @include function.mediaContainers(5rem, 5rem);
+}
+
+.arrow {
+  @include function.mediaContainers(0rem, 2.5rem);
+}
+
+.hero-visual-text {
+  align-self: center;
+  width: 95%;
+  @include function.typography(1rem, 400, GilroyMedium, #141414, 1.5rem, center);
+
+  .hero-visual-text-highlight {
+    @include function.typography(1rem, 400, GilroySemiBold, #141414, 1.5rem, center);
+  }
 }
 </style>

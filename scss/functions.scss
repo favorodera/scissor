@@ -1,0 +1,16 @@
+@mixin typography($fontSize, $fontWeight, $textColor, $lineHeight, $textAlign) {
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    color: $textColor;
+    line-height: $lineHeight;
+    text-align: $textAlign;
+  }
+  
+  @mixin mediaContainers($height, $width) {
+    width: $width;
+    height: $height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  

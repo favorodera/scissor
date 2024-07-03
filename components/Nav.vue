@@ -22,7 +22,7 @@ onUnmounted(() => {
 <template>
   <nav>
     <div class="logo-container">
-      <div class="logo"><img src="../media/icons/scissor.svg" alt="logo" /></div>
+      <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
       <div class="logo-line"></div>
       <p class="logo-text">SCISSOR</p>
     </div>

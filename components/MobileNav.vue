@@ -8,14 +8,14 @@ const mobileNavStore = useMobileNavigationStore()
     ><div class="mobile-nav" v-if="mobileNavStore.isMobileNavOpen === true">
       <nav>
         <div class="logo-container">
-          <div class="logo"><img src="../media/icons/scissor.svg" alt="logo" /></div>
+          <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
           <div class="logo-line"></div>
           <p class="logo-text">SCISSOR</p>
         </div>
         <div class="login-and-escape-container">
           <button class="login">Login</button>
           <button class="close-btn" @click="mobileNavStore.toggleMobileNav">
-            <img src="../media/icons/escape.svg" alt="escape" />
+            <img src="../media/svg/escape.svg" alt="escape" />
           </button>
         </div>
       </nav></div

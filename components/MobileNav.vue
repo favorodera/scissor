@@ -80,11 +80,11 @@ nav {
 }
 
 .logo-text {
-  @include function.typography(1.5rem, 900, #0065fe, 2rem, start);
+  @include function.typography(1.5rem, 400, Gilroy-Bold, #0065fe, 2rem, start);
 }
 
 .login {
-  @include function.typography(1rem, 700, #ffffff, 0.75rem, center);
+  @include function.typography(1rem, 400, GilroySemiBold, #ffffff, 0.75rem, center);
   background: #0065fe;
   padding: 0.75rem 1.5rem;
   border: 0.065rem solid transparent;

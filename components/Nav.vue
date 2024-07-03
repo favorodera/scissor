@@ -72,7 +72,7 @@ nav {
 }
 
 .logo-text {
-  @include function.typography(1.5rem, 900, #0065fe, 2rem, start);
+  @include function.typography(1.5rem, 400, GilroyBold, #0065fe, 2rem, start);
 }
 
 .nav-urls {
@@ -86,7 +86,7 @@ nav {
     justify-content: center;
 
     a {
-      @include function.typography(1.125rem, 400, #141414, normal, start);
+      @include function.typography(1.125rem, 400, GilroyMedium, #141414, normal, start);
       text-decoration: none;
       transition: all 0.5s ease-in-out;
     }
@@ -98,7 +98,7 @@ nav {
 }
 
 .login {
-  @include function.typography(1rem, 700, #ffffff, 0.75rem, center);
+  @include function.typography(1rem, 400, GilroySemiBold, #ffffff, 0.75rem, center);
   background: #0065fe;
   padding: 0.75rem 1.5rem;
   border: 0.065rem solid transparent;

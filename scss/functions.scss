@@ -1,6 +1,7 @@
-@mixin typography($fontSize, $fontWeight, $textColor, $lineHeight, $textAlign) {
+@mixin typography($fontSize, $fontWeight, $fontFamily, $textColor, $lineHeight, $textAlign) {
   font-size: $fontSize;
   font-weight: $fontWeight;
+  font-family: $fontFamily;
   color: $textColor;
   line-height: $lineHeight;
   text-align: $textAlign;

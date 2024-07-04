@@ -80,6 +80,7 @@ section {
 .stat-box-container {
   display: flex;
   width: max-content;
+  justify-content: space-around;
   align-items: flex-start;
   gap: 2rem;
 }

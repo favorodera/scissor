@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import Nav from '../components/Nav.vue'
 import Hero from '../components/Hero.vue'
+import About from '../components/About.vue'
 </script>
 
 <template>
   <section class="hero-section">
     <Nav />
     <Hero />
+    <About />
   </section>
 </template>
 

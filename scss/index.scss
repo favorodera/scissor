@@ -4,25 +4,30 @@
 @font-face {
   font-family: 'GilroyRegular';
   src: url('../media/fonts/gilroy/Gilroy-Regular.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'GilroyMedium';
   src: url('../media/fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'GilroySemiBold';
   src: url('../media/fonts/gilroy/Gilroy-SemiBold.ttf') format('truetype');
+  font-display: swap;
 }
 @font-face {
   font-family: 'GilroyBold';
   src: url('../media/fonts/gilroy/Gilroy-Bold.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'GilroyExtraBold';
   src: url('../media/fonts/gilroy/Gilroy-ExtraBold.ttf') format('truetype');
+  font-display: swap;
 }
 
 * {

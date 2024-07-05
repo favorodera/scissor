@@ -31,7 +31,7 @@ onUnmounted(() => {
     </div>
     <div class="intro-cta-container">
       <button class="intro-cta-button">Get Started</button>
-      <a href="" class="intro-cta-text">Learn More</a>
+      <a href="#about" class="intro-cta-text">Learn More</a>
     </div>
   </div>
 

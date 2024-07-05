@@ -3,7 +3,7 @@ import FAQBlocks from './FAQBlocks.vue'
 </script>
 
 <template>
-  <section>
+  <section id="faq">
     <div class="faqs-container">
       <div class="faq-header-container">
         <div class="faq-header-line"><img src="../media/svg/line.svg" alt="line" /></div>

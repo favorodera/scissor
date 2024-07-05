@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section>
+  <section id="about">
     <div class="stats-container">
       <p class="stats-heading">
         One Stop, <br />Four <span class="stats-heading-highlight">Possibilities</span>.

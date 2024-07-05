@@ -28,9 +28,8 @@ onUnmounted(() => {
     </div>
 
     <ul class="nav-urls" v-if="windowWidth >= 600">
-      <li><a href="#">Features</a></li>
-      <li><a href="#">Pricing</a></li>
-      <li><a href="#">FAQs</a></li>
+      <li><a href="#about">Features</a></li>
+      <li><a href="#faq">FAQs</a></li>
     </ul>
 
     <button class="login" v-if="windowWidth >= 600">Login</button>
@@ -77,7 +76,7 @@ nav {
 
 .nav-urls {
   display: flex;
-  gap: 2.5rem;
+  gap: 5rem;
   list-style-type: none;
 
   li {

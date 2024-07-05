@@ -30,7 +30,7 @@ onUnmounted(() => {
       </p>
     </div>
     <div class="intro-cta-container">
-      <button class="intro-cta-button">Get Started</button>
+      <RouterLink to="/authentication" class="intro-cta-button">Get Started</RouterLink>
       <a href="#about" class="intro-cta-text">Learn More</a>
     </div>
   </div>

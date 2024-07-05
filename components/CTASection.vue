@@ -2,7 +2,7 @@
   <section>
     <div class="CTA-container">
       <p class="CTA-text">Revolutionizing Link Optimization</p>
-      <button type="button" class="CTA-button">Get Started</button>
+      <RouterLink to="/authentication" class="CTA-button">Get Started</RouterLink>
     </div>
   </section>
 </template>

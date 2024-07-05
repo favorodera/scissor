@@ -32,7 +32,7 @@ onUnmounted(() => {
       <li><a href="#faq">FAQs</a></li>
     </ul>
 
-    <button class="login" v-if="windowWidth >= 600">Login</button>
+    <RouterLink to="/authentication" class="login" v-if="windowWidth >= 600">Login</RouterLink>
 
     <div class="hamburger" v-if="windowWidth < 600" @click="mobileNavStore.toggleMobileNav()">
       <div class="line"></div>

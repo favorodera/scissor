@@ -13,7 +13,7 @@ const mobileNavStore = useMobileNavigationStore()
           <p class="logo-text">SCISSOR</p>
         </div>
         <div class="login-and-escape-container">
-          <button class="login">Login</button>
+          <RouterLink to="/authentication" class="login">Login</RouterLink>
           <button class="close-btn" @click="mobileNavStore.toggleMobileNav">
             <img src="../media/svg/escape.svg" alt="escape" />
           </button>

@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import Nav from '../components/Nav.vue'
-import Hero from '../components/Hero.vue'
-import About from '../components/About.vue'
+import Nav from '../components/NavSection.vue'
+import Hero from '../components/HeroSection.vue'
+import About from '../components/AboutSection.vue'
+import FAQ from '../components/FAQSection.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import About from '../components/About.vue'
     <Nav />
     <Hero />
     <About />
+    <FAQ />
   </section>
 </template>
 

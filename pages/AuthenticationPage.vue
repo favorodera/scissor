@@ -1,6 +1,11 @@
+<script setup lang="ts">
+import {authentication } from '../stores/authentication';
+const authenticationStore = authentication()
+</script>
+
 <template>
   <div class="authentication-container">
-    <button class="authentication-button">
+    <button class="authentication-button" @click.prevent="authenticationStore.authenticate()">
       <div class="authentication-icon">
         <img src="../media/svg/google.svg" alt="Google" />
       </div>

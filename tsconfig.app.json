@@ -6,7 +6,6 @@
     "./**/*.vue",
     "tests",
     "stores",
-    "stores/authentication.ts",
     "ts/index.ts",
     "components",
     "pages"

@@ -49,7 +49,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: 1.5rem 0rem;
 }
 
 .user {

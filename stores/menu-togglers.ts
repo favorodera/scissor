@@ -11,7 +11,6 @@ export const useMenuTogglersStore = defineStore('menu-togglers', () => {
 
   const toggleUserMenu = () => {
     isUserMenuOpen.value = !isUserMenuOpen.value
-    console.log(isUserMenuOpen.value)
   }
 
   return { isMobileNavOpen, toggleMobileNav, isUserMenuOpen, toggleUserMenu }

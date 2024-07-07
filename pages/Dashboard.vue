@@ -8,14 +8,21 @@ const menuTogglers = useMenuTogglersStore()
 <template>
   <section>
     <nav>
-      <div class="user">
+      <div class="user" @click="menuTogglers.toggleUserMenu">
         <div class="user-text-container">
           <p class="welcome-text">Welcome</p>
           <p class="username">{{ authentication.username }}</p>
         </div>
-        <button class="toggle-user-profile" @click="menuTogglers.toggleUserMenu">
-          <img src="../media/svg/down.svg" alt="down-arrow" />
-        </button>
+        <div class="menu-state-icon">
+          <Transition name="menu-state-icon" mode="out-in">
+            <img
+              src="../media/svg/down.svg"
+              alt="down-arrow"
+              v-if="menuTogglers.isUserMenuOpen === false"
+            />
+            <img src="../media/svg/minus-user-menu.svg" alt="minus" v-else />
+          </Transition>
+        </div>
       </div>
     </nav>
 
@@ -39,7 +46,6 @@ section {
 
 nav {
   width: 100%;
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -58,6 +64,13 @@ nav {
   border: 0.0625rem solid #353c4a;
   background: #181e29;
   box-shadow: 0rem 0.25rem 0.325rem 0rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.user:hover {
+  border: 0.0625rem solid #0065fe;
+  background: #353c4a8f;
 }
 
 .user-text-container {
@@ -77,10 +90,18 @@ nav {
   @include function.typography(1.25rem, 400, GilroyBold, #ffffff, 1.125rem, center);
 }
 
-.toggle-user-profile {
+.menu-state-icon {
   @include function.mediaContainers(1.5rem, 1.5rem);
-  background: transparent;
-  border: none;
+}
+
+.menu-state-icon-enter-active,
+.menu-state-icon-leave-active {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.menu-state-icon-leave-to,
+.menu-state-icon-enter-from {
+  opacity: 0;
 }
 
 .user-menu {

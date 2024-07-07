@@ -1,9 +1,8 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue'
+import { RouterLink } from 'vue-router'
 import { useMenuTogglersStore } from '../stores/menu-togglers'
 const menuTogglers = useMenuTogglersStore()
-import { RouterLink } from 'vue-router'
-
-import { ref, onMounted, onUnmounted } from 'vue'
 
 const windowWidth = ref(window.innerWidth)
 

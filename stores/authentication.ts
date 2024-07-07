@@ -18,8 +18,8 @@ export const useAuthenticationStore = defineStore('authentication', () => {
     try {
       const result = await signInWithPopup(auth, provider)
       userData.value = result.user as userData
-      isLoggedIn.value = !isLoggedIn.value
       router.push('/dashboard')
+      isLoggedIn.value = !isLoggedIn.value
       return userData.value
     } catch (error) {
       return null
@@ -30,8 +30,8 @@ export const useAuthenticationStore = defineStore('authentication', () => {
     try {
       signOut(auth)
       userData.value = null
-      isLoggedIn.value = !isLoggedIn.value
       router.push('/')
+      isLoggedIn.value = !isLoggedIn.value
       return userData.value
     } catch (error) {
       return null

@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router'
 import { useMenuTogglersStore } from '../stores/menu-togglers'
 const menuTogglers = useMenuTogglersStore()
-import { RouterLink } from 'vue-router'
 </script>
 
 <template>

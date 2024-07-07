@@ -41,7 +41,7 @@ const toggleAnswer = () => {
   flex-direction: column;
   gap: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 0.065rem solid #d6d6d6;
+  border-bottom: 0.065rem solid #005ae2;
   cursor: pointer;
 }
 
@@ -54,7 +54,7 @@ const toggleAnswer = () => {
 }
 
 .faq-question {
-  @include function.typography(1.25rem, 400, GilroyMedium, #141414, 2rem, start);
+  @include function.typography(1.25rem, 400, GilroyMedium, #005ae2, 2rem, start);
 }
 
 .plus-icon,
@@ -63,7 +63,7 @@ const toggleAnswer = () => {
 }
 
 .faq-answer {
-  @include function.typography(1rem, 400, GilroyMedium, #141414, 2rem, start);
+  @include function.typography(1rem, 400, GilroyMedium, #ffffff, 2rem, start);
 }
 
 .fade-enter-active,

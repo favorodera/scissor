@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="CTA-container">
-      <p class="CTA-text">Revolutionizing Link Optimization</p>
+      <p class="CTA-text">Revolutionizing Link Optimization!</p>
       <RouterLink to="/authentication" class="CTA-button">Get Started</RouterLink>
     </div>
   </section>
@@ -15,7 +15,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #1e3448 99.99%, rgba(30, 52, 72, 0) 100%);
+
   height: 18.69rem;
   border-radius: 1rem;
 }
@@ -27,8 +27,19 @@ section {
   justify-content: center;
   gap: 2rem;
 }
+
 .CTA-text {
-  @include function.typography(2.5rem, 400, GilroyBold, #ffffff, 3rem, center);
+  @include function.typography(2.5rem, 400, GilroyBold, transparent, 3rem, center);
+  background: linear-gradient(
+    90deg,
+    #144ee3 -0.02%,
+    #eb568e 18.86%,
+    #a353aa 64.49%,
+    #144ee3 100.67%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .CTA-button {

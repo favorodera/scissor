@@ -68,7 +68,7 @@ section {
 }
 
 .faq-header {
-  @include function.typography(2.5rem, 400, GilroyBold, #141414, 2rem, start);
+  @include function.typography(2.5rem, 400, GilroyBold, #005ae2, 2rem, start);
 }
 
 .faq-blocks {

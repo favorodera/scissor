@@ -86,7 +86,7 @@ nav {
     justify-content: center;
 
     a {
-      @include function.typography(1.125rem, 400, GilroyMedium, #141414, normal, start);
+      @include function.typography(1.125rem, 400, GilroyMedium, #ffffff, normal, start);
       text-decoration: none;
       transition: all 0.5s ease-in-out;
     }

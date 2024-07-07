@@ -26,7 +26,7 @@ const authentication = useAuthenticationStore()
   flex-direction: column;
   align-items: center;
   gap: 10rem;
-  background: #ffffff;
+  background: #0e131e;
   width: 100%;
 }
 
@@ -38,6 +38,7 @@ const authentication = useAuthenticationStore()
   gap: 0.5rem;
   justify-content: flex-start;
 }
+
 .logo {
   @include function.mediaContainers(1.5rem, 1.5rem);
 }
@@ -53,20 +54,37 @@ const authentication = useAuthenticationStore()
 }
 
 .authentication-button {
-  @include function.typography(1.5rem, 400, GilroySemiBold, #141414, 2rem, center);
+  @include function.typography(1.5rem, 400, GilroySemiBold, transparent, 2rem, center);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
   padding: 1.5rem;
-  border: 0.065rem solid #141414af;
+  border: 0.065rem solid #005ae2;
   border-radius: 0.5rem;
-  transition: all 0.5s ease-in-out;
-  background: transparent;
+  transition: all 0.5s ease-in-out 0.5s;
+  background: linear-gradient(
+    90deg,
+    #144ee3 -0.02%,
+    #eb568e 18.86%,
+    #a353aa 64.49%,
+    #144ee3 100.67%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .authentication-button:hover {
-  background: #3d3c3cf5;
-  color: #ffffff;
+  background: linear-gradient(
+    90deg,
+    #144ee3 -0.02%,
+    #005ae2 18.86%,
+    #a353aa 64.49%,
+    #144ee3 100.67%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 </style>

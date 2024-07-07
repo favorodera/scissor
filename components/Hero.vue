@@ -20,8 +20,7 @@ onUnmounted(() => {
   <div class="intro">
     <div class="intro-text-container">
       <p class="intro-text">
-        Optimize Your Online Experience with Our Advanced
-        <span class="highlight"> URL Shortening </span> Solution
+        Optimize Your Online Experience with Our Advanced URL Shortening Solution
       </p>
       <p class="intro-description">
         Personalize your shortened URLs to align with your brand identity. Utilize custom slugs,
@@ -78,15 +77,21 @@ onUnmounted(() => {
 }
 
 .intro-text {
-  @include function.typography(3rem, 400, GilroyBold, #141414, 6rem, center);
-}
-
-.highlight {
-  @include function.typography(3rem, 400, GilroyBold, #005ae2, 6rem, center);
+  @include function.typography(3rem, 400, GilroyBold, transparent, 6rem, center);
+  background: linear-gradient(
+    90deg,
+    #144ee3 -0.02%,
+    #eb568e 18.86%,
+    #a353aa 64.49%,
+    #144ee3 100.67%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .intro-description {
-  @include function.typography(1.125rem, 400, GilroyMedium, #141414, 1.75rem, center);
+  @include function.typography(1.125rem, 400, GilroyMedium, #ffffff, 1.75rem, center);
   max-width: 48.8125rem;
 }
 
@@ -113,7 +118,7 @@ onUnmounted(() => {
 }
 
 .intro-cta-text {
-  @include function.typography(1rem, 400, GilroySemiBold, #141414, 0.75rem, center);
+  @include function.typography(1rem, 400, GilroySemiBold, #ffffff, 0.75rem, center);
   text-decoration: none;
   transition: all 0.5s ease-in-out;
 }
@@ -165,10 +170,20 @@ onUnmounted(() => {
 .hero-visual-text {
   align-self: center;
   width: 95%;
-  @include function.typography(1rem, 400, GilroyMedium, #141414, 1.5rem, center);
+  @include function.typography(1rem, 400, GilroyMedium, #ffffff, 1.5rem, center);
 
   .hero-visual-text-highlight {
-    @include function.typography(1rem, 400, GilroySemiBold, #141414, 1.5rem, center);
+    @include function.typography(1rem, 400, GilroySemiBold, transparent, 1.5rem, center);
+    background: linear-gradient(
+      90deg,
+      #144ee3 -0.02%,
+      #eb568e 18.86%,
+      #a353aa 64.49%,
+      #144ee3 100.67%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }
 </style>

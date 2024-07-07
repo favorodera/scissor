@@ -33,7 +33,7 @@ import { RouterLink } from 'vue-router'
   left: 0;
   width: 100%;
   height: 100%;
-  background: #ffffff;
+  background: #0e131e;
   z-index: 9999;
   display: flex;
   flex-direction: column;

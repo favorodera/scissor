@@ -119,14 +119,13 @@ section {
   align-content: center;
   justify-content: space-around;
   gap: 2rem;
-  background: #f9fbfd;
   width: 100%;
   flex-wrap: wrap;
 }
 
 .stats-heading {
   max-width: 21.0625rem;
-  @include function.typography(2.5rem, 400, GilroyBold, #141414, 3rem, start);
+  @include function.typography(2.5rem, 400, GilroyBold, #ffffff, 3rem, start);
 }
 .stats-heading-highlight {
   @include function.typography(2.5rem, 400, GilroyBold, #005ae2, 3rem, start);
@@ -164,11 +163,11 @@ section {
 }
 
 .stat-number {
-  @include function.typography(2rem, 400, GilroySemiBold, #141414, 2.5rem, start);
+  @include function.typography(2rem, 400, GilroySemiBold, #005ae2, 2.5rem, start);
 }
 
 .stat-text {
-  @include function.typography(1rem, 400, GilroyMedium, #141414, 1.5rem, start);
+  @include function.typography(1rem, 400, GilroyMedium, #ffffff, 1.5rem, start);
 }
 
 .about-container {
@@ -203,13 +202,13 @@ section {
 }
 
 .why-choose-heading {
-  @include function.typography(2.5rem, 400, GilroyBold, #141414, 2rem, start);
+  @include function.typography(2.5rem, 400, GilroyBold, #ffffff, 2rem, start);
 }
 .why-choose-heading-highlight {
   @include function.typography(2.5rem, 400, GilroyBold, #005ae2, 2rem, start);
 }
 .why-choose-text {
-  @include function.typography(1rem, 400, GilroyMedium, #141414, 1.75rem, start);
+  @include function.typography(1rem, 400, GilroyMedium, #ffffff, 1.75rem, start);
   flex: 1 1 auto;
 }
 
@@ -259,10 +258,10 @@ section {
 }
 
 .feature-box-text-header {
-  @include function.typography(2rem, 400, GilroySemiBold, #141414, 1.75rem, start);
+  @include function.typography(2rem, 400, GilroySemiBold, #005ae2, 1.75rem, start);
 }
 
 .feature-box-text {
-  @include function.typography(1rem, 400, GilroyMedium, #141414, 1.5rem, start);
+  @include function.typography(1rem, 400, GilroyMedium, #ffffff, 1.5rem, start);
 }
 </style>

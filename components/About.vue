@@ -139,13 +139,13 @@ section {
   max-width: 44.3125rem;
   width: 100%;
   flex-wrap: wrap;
-  flex: 1 0 0;
+  flex: 1 1 100%;
 }
 
 .stat-box-container {
   display: flex;
   width: max-content;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
 }
@@ -175,7 +175,7 @@ section {
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: space-around;
-  gap: 4rem;
+  gap: 2rem;
   width: 100%;
 }
 
@@ -209,7 +209,6 @@ section {
 }
 .why-choose-text {
   @include function.typography(1rem, 400, GilroyMedium, #ffffff, 1.75rem, start);
-  flex: 1 1 auto;
 }
 
 .features-container {
@@ -217,17 +216,16 @@ section {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4rem;
+  gap: 2rem;
   max-width: 44.25rem;
   flex: 1 1 18.5rem;
 }
 
 .features-box-container {
   display: flex;
-
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1.75rem;
+  gap: 2rem;
   max-width: 100%;
   flex: 1 1 18.5rem;
 }

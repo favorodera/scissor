@@ -1,12 +1,12 @@
+<script setup lang="ts">
+import { useAuthenticationStore } from '../stores/authentication'
+const authentication = useAuthenticationStore()
+</script>
+
 <template>
   <div class="authentication-container">
-    <button class="authentication-button">
-      <div class="authentication-icon">
-        <img src="../media/svg/google.svg" alt="Google" />
-      </div>
-      <div>
-        <p class="authentication-text">Continue with Google</p>
-      </div>
+    <button class="authentication-button" @click="authentication.authenticate()">
+      Continue with Google
     </button>
   </div>
 </template>
@@ -26,6 +26,7 @@
 }
 
 .authentication-button {
+  @include function.typography(1.5rem, 400, GilroySemiBold, #141414, 2rem, center);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,17 +40,6 @@
 
 .authentication-button:hover {
   background: #3d3c3cf5;
-  .authentication-text {
-    color: #ffffff;
-  }
-}
-
-.authentication-icon {
-  @include function.mediaContainers(1.25rem, 1.25rem);
-}
-
-.authentication-text {
-  @include function.typography(1.5rem, 400, GilroySemiBold, #141414, 1rem, center);
-  transition: all 0.5s ease-in-out;
+  color: #ffffff;
 }
 </style>

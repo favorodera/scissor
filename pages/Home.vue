@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Nav from '../components/NavSection.vue'
-import Hero from '../components/HeroSection.vue'
-import About from '../components/AboutSection.vue'
-import FAQ from '../components/FAQSection.vue'
-import CTA from '../components/CTASection.vue'
+import Nav from '../components/Nav.vue'
+import Hero from '../components/Hero.vue'
+import About from '../components/About.vue'
+import FAQ from '../components/FAQ.vue'
+import CTA from '../components/CTA.vue'
 import MobileNav from '../components/MobileNav.vue'
-import Footer from '../components/FooterSection.vue'
+import Footer from '../components/Footer.vue'
 </script>
 
 <template>

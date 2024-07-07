@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useMobileNavigationStore } from '../stores/mobile-navigation'
-const mobileNavStore = useMobileNavigationStore()
+import { useMenuTogglersStore } from '../stores/menu-togglers'
+const menuTogglers = useMenuTogglersStore()
 import { RouterLink } from 'vue-router'
 
 import { ref, onMounted, onUnmounted } from 'vue'
@@ -35,7 +35,7 @@ onUnmounted(() => {
 
     <RouterLink to="/authentication" class="login" v-if="windowWidth >= 600">Login</RouterLink>
 
-    <div class="hamburger" v-if="windowWidth < 600" @click="mobileNavStore.toggleMobileNav()">
+    <div class="hamburger" v-if="windowWidth < 600" @click="menuTogglers.toggleMobileNav()">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>

@@ -12,6 +12,7 @@ interface userData {
 export const useAuthenticationStore = defineStore('authentication', () => {
   const userData = ref<userData | null>(null)
   const isLoggedIn = ref(false)
+  const username = computed(() => userData.value?.displayName)
 
   const authenticate = async (): Promise<userData | null> => {
     try {
@@ -41,6 +42,7 @@ export const useAuthenticationStore = defineStore('authentication', () => {
     userData: computed(() => userData.value),
     isLoggedIn,
     authenticate,
-    logout
+    logout,
+    username
   }
 })

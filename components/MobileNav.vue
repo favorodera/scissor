@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { useMobileNavigationStore } from '../stores/mobile-navigation'
-const mobileNavStore = useMobileNavigationStore()
+import { useMenuTogglersStore } from '../stores/menu-togglers'
+const menuTogglers = useMenuTogglersStore()
 import { RouterLink } from 'vue-router'
 </script>
 
 <template>
   <Transition name="mobile-nav" mode="out-in">
-    <div class="mobile-nav" v-if="mobileNavStore.isMobileNavOpen === true">
+    <div class="mobile-nav" v-if="menuTogglers.isMobileNavOpen === true">
       <nav>
         <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
           <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
@@ -15,7 +15,7 @@ import { RouterLink } from 'vue-router'
         </RouterLink>
         <div class="login-and-escape-container">
           <RouterLink to="/authentication" class="login">Login</RouterLink>
-          <button class="close-btn" @click="mobileNavStore.toggleMobileNav">
+          <button class="close-btn" @click="menuTogglers.toggleMobileNav">
             <img src="../media/svg/escape.svg" alt="escape" />
           </button>
         </div>
@@ -34,7 +34,7 @@ import { RouterLink } from 'vue-router'
   width: 100%;
   height: 100%;
   background: #0e131e;
-  z-index: 9999;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   padding: 0.75rem;

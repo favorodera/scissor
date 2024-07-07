@@ -105,7 +105,7 @@ nav {
 
 .user-menu {
   position: absolute;
-  top: 8rem;
+  top: 5rem;
   right: 0rem;
   width: 18.75rem;
   box-shadow: 0rem 0.25rem 0.325rem 0rem rgba(0, 0, 0, 0.1);

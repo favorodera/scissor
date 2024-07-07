@@ -1,29 +1,32 @@
 <script setup lang="ts">
 import { useMobileNavigationStore } from '../stores/mobile-navigation'
 const mobileNavStore = useMobileNavigationStore()
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <Transition name="mobile-nav" mode="out-in"
-    ><div class="mobile-nav" v-if="mobileNavStore.isMobileNavOpen === true">
+  <Transition name="mobile-nav" mode="out-in">
+    <div class="mobile-nav" v-if="mobileNavStore.isMobileNavOpen === true">
       <nav>
-        <div class="logo-container">
+        <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
           <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
           <div class="logo-line"></div>
           <p class="logo-text">SCISSOR</p>
-        </div>
+        </RouterLink>
         <div class="login-and-escape-container">
           <RouterLink to="/authentication" class="login">Login</RouterLink>
           <button class="close-btn" @click="mobileNavStore.toggleMobileNav">
             <img src="../media/svg/escape.svg" alt="escape" />
           </button>
         </div>
-      </nav></div
-  ></Transition>
+      </nav>
+    </div>
+  </Transition>
 </template>
 
 <style scoped lang="scss">
 @use '../scss/functions.scss' as function;
+
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -69,6 +72,7 @@ nav {
   gap: 0.5rem;
   justify-content: center;
 }
+
 .logo {
   @include function.mediaContainers(1.5rem, 1.5rem);
 }

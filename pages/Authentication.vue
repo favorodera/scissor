@@ -5,8 +5,14 @@ const authentication = useAuthenticationStore()
 
 <template>
   <div class="authentication-container">
+    <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
+      <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
+      <div class="logo-line"></div>
+      <p class="logo-text">SCISSOR</p>
+    </RouterLink>
+
     <button class="authentication-button" @click="authentication.authenticate()">
-      Continue with Google
+      CONTINUE WITH GOOGLE
     </button>
   </div>
 </template>
@@ -19,10 +25,31 @@ const authentication = useAuthenticationStore()
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 10rem;
-  background: #f9fbfd;
+  background: #ffffff;
   width: 100%;
+}
+
+.logo-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+.logo {
+  @include function.mediaContainers(1.5rem, 1.5rem);
+}
+
+.logo-line {
+  width: 0.125rem;
+  height: 1.5rem;
+  background: #0065fe;
+}
+
+.logo-text {
+  @include function.typography(1.5rem, 400, GilroyBold, #0065fe, 1.5rem, start);
 }
 
 .authentication-button {

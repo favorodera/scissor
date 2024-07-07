@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useMobileNavigationStore } from '../stores/mobile-navigation'
 const mobileNavStore = useMobileNavigationStore()
+import { RouterLink } from 'vue-router'
 
 import { ref, onMounted, onUnmounted } from 'vue'
 
@@ -21,11 +22,11 @@ onUnmounted(() => {
 
 <template>
   <nav>
-    <div class="logo-container">
+    <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
       <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
       <div class="logo-line"></div>
       <p class="logo-text">SCISSOR</p>
-    </div>
+    </RouterLink>
 
     <ul class="nav-urls" v-if="windowWidth >= 600">
       <li><a href="#about">Features</a></li>

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { auth, signInWithPopup, provider } from '../ts/firebase-config'
+import { auth, signInWithPopup, provider, signOut } from '../ts/firebase-config'
 import { computed, ref } from 'vue'
 import router from '../router/router'
 
@@ -11,23 +11,36 @@ interface userData {
 
 export const useAuthenticationStore = defineStore('authentication', () => {
   const userData = ref<userData | null>(null)
-  const isUserAuthenticated = ref(false)
+  const isLoggedIn = ref(false)
 
-  const authenticate = async () => {
+  const authenticate = async (): Promise<userData | null> => {
     try {
       const result = await signInWithPopup(auth, provider)
       userData.value = result.user as userData
-      isUserAuthenticated.value = !isUserAuthenticated.value
+      isLoggedIn.value = !isLoggedIn.value
       router.push('/dashboard')
       return userData.value
     } catch (error) {
-      return error
+      return null
+    }
+  }
+
+  const logout = async () => {
+    try {
+      signOut(auth)
+      userData.value = null
+      isLoggedIn.value = !isLoggedIn.value
+      router.push('/')
+      return userData.value
+    } catch (error) {
+      return null
     }
   }
 
   return {
     userData: computed(() => userData.value),
-    isUserAuthenticated,
-    authenticate
+    isLoggedIn,
+    authenticate,
+    logout
   }
 })

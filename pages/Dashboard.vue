@@ -3,6 +3,7 @@ import { useAuthenticationStore } from '../stores/authentication'
 const authentication = useAuthenticationStore()
 import { useMenuTogglersStore } from '../stores/menu-togglers'
 const menuTogglers = useMenuTogglersStore()
+import Form from '../components/Form.vue'
 import UserMenu from '../components/UserMenu.vue'
 </script>
 
@@ -27,6 +28,10 @@ import UserMenu from '../components/UserMenu.vue'
       </div>
     </nav>
     <UserMenu />
+
+    <main>
+      <Form />
+    </main>
   </section>
 </template>
 
@@ -40,6 +45,7 @@ section {
   align-items: center;
   justify-content: center;
   position: relative;
+  gap: 5rem;
 }
 
 nav {
@@ -99,5 +105,12 @@ nav {
 .menu-state-icon-leave-to,
 .menu-state-icon-enter-from {
   opacity: 0;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

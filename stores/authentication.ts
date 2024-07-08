@@ -12,26 +12,40 @@ interface userData {
 export const useAuthenticationStore = defineStore('authentication', () => {
   const userData = ref<userData | null>(null)
   const isLoggedIn = ref(false)
-  const username = computed(() => userData.value?.displayName)
+  const parsedUserData = localStorage.getItem('userData')
 
-  const authenticate = async (): Promise<userData | null> => {
+  const username = computed(() =>
+    parsedUserData
+      ? JSON.parse(parsedUserData).displayName.split(' ')[0]
+      : userData.value?.displayName.split(' ')[0]
+  )
+  const userEmail = computed(() =>
+    parsedUserData ? JSON.parse(parsedUserData).email : userData.value?.email
+  )
+  const userImage = computed(() =>
+    parsedUserData ? JSON.parse(parsedUserData).photoURL : userData.value?.photoURL
+  )
+
+  const signIn = async (): Promise<userData | null> => {
     try {
       const result = await signInWithPopup(auth, provider)
       userData.value = result.user as userData
+      localStorage.setItem('userData', JSON.stringify(userData.value))
       router.push('/dashboard')
-      isLoggedIn.value = !isLoggedIn.value
+      isLoggedIn.value = true
       return userData.value
     } catch (error) {
       return null
     }
   }
 
-  const logout = async () => {
+  const logOut = async () => {
     try {
       signOut(auth)
       userData.value = null
+      localStorage.removeItem('userData')
       router.push('/')
-      isLoggedIn.value = !isLoggedIn.value
+      isLoggedIn.value = false
       return userData.value
     } catch (error) {
       return null
@@ -41,8 +55,10 @@ export const useAuthenticationStore = defineStore('authentication', () => {
   return {
     userData: computed(() => userData.value),
     isLoggedIn,
-    authenticate,
-    logout,
-    username
+    signIn,
+    logOut,
+    username,
+    userEmail,
+    userImage
   }
 })

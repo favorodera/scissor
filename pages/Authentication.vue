@@ -11,7 +11,7 @@ const authentication = useAuthenticationStore()
       <p class="logo-text">SCISSOR</p>
     </RouterLink>
 
-    <button class="authentication-button" @click="authentication.authenticate()">
+    <button class="authentication-button" @click="authentication.signIn()">
       CONTINUE WITH GOOGLE
     </button>
   </div>

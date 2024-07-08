@@ -3,6 +3,7 @@ import { useAuthenticationStore } from '../stores/authentication'
 const authentication = useAuthenticationStore()
 import { useMenuTogglersStore } from '../stores/menu-togglers'
 const menuTogglers = useMenuTogglersStore()
+import UserMenu from '../components/UserMenu.vue'
 </script>
 
 <template>
@@ -25,10 +26,7 @@ const menuTogglers = useMenuTogglersStore()
         </div>
       </div>
     </nav>
-
-    <Transition name="user-menu" mode="out-in">
-      <div class="user-menu" v-if="menuTogglers.isUserMenuOpen === true"></div>
-    </Transition>
+    <UserMenu />
   </section>
 </template>
 
@@ -100,35 +98,6 @@ nav {
 
 .menu-state-icon-leave-to,
 .menu-state-icon-enter-from {
-  opacity: 0;
-}
-
-.user-menu {
-  position: absolute;
-  top: 5rem;
-  right: 0rem;
-  width: 18.75rem;
-  box-shadow: 0rem 0.25rem 0.325rem 0rem rgba(0, 0, 0, 0.1);
-  height: 15rem;
-  border: 0.0625rem solid #353c4a;
-  background: #181e29;
-  z-index: 1;
-  display: flex;
-  border-radius: 1rem;
-  flex-direction: column;
-  padding: 0.75rem;
-  align-items: center;
-  transition: opacity 0.5s ease-in-out;
-  @include function.typography(1rem, 400, GilroySemiBold, #ffffff, 1.5rem, start);
-}
-
-.user-menu-enter-active,
-.user-menu-leave-active {
-  opacity: 1;
-}
-
-.user-menu-leave-to,
-.user-menu-enter-from {
   opacity: 0;
 }
 </style>

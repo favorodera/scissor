@@ -29,7 +29,7 @@ import UserMenu from '../components/UserMenu.vue'
     </nav>
     <UserMenu />
 
-    <main>
+    <main :aria-haspopup="menuTogglers.isUserMenuOpen">
       <Form />
     </main>
   </section>
@@ -46,6 +46,12 @@ section {
   justify-content: center;
   position: relative;
   gap: 5rem;
+}
+
+main[aria-haspopup='true'] {
+  position: relative;
+  filter: blur(0.3rem);
+  pointer-events: none;
 }
 
 nav {
@@ -112,5 +118,6 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.5s ease-in-out;
 }
 </style>

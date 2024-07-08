@@ -68,7 +68,7 @@ input {
 }
 
 label {
-  @include function.typography(0.8rem, 400, GilroyThin, #ffffffcc, 1.75rem, start);
+  @include function.typography(0.8rem, 400, GilroyBold, #ffffffcc, 1.75rem, start);
   position: absolute;
   top: -19%;
   left: 1.5rem;

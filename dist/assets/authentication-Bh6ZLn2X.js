@@ -1,4 +1,4 @@
-import{k as An,l as it,m as re,n as st}from"./index-CerLAEDk.js";var ot={};/**
+import{k as An,l as it,m as re,n as st}from"./index-ClxR7N0D.js";var ot={};/**
  * @license
  * Copyright 2017 Google LLC
  *
@@ -193,7 +193,7 @@ import{k as An,l as it,m as re,n as st}from"./index-CerLAEDk.js";var ot={};/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */class pr{constructor(e){this.container=e}getPlatformInfoString(){return this.container.getProviders().map(t=>{if(gr(t)){const r=t.getImmediate();return`${r.library}/${r.version}`}else return null}).filter(t=>t).join(" ")}}function gr(n){const e=n.getComponent();return(e==null?void 0:e.type)==="VERSION"}const De="@firebase/app",dt="0.10.5";/**
+ */class pr{constructor(e){this.container=e}getPlatformInfoString(){return this.container.getProviders().map(t=>{if(gr(t)){const r=t.getImmediate();return`${r.library}/${r.version}`}else return null}).filter(t=>t).join(" ")}}function gr(n){const e=n.getComponent();return(e==null?void 0:e.type)==="VERSION"}const De="@firebase/app",dt="0.10.6";/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -208,7 +208,7 @@ import{k as An,l as it,m as re,n as st}from"./index-CerLAEDk.js";var ot={};/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const U=new Vt("@firebase/app"),mr="@firebase/app-compat",_r="@firebase/analytics-compat",vr="@firebase/analytics",Ir="@firebase/app-check-compat",yr="@firebase/app-check",br="@firebase/auth",wr="@firebase/auth-compat",Er="@firebase/database",Tr="@firebase/database-compat",Sr="@firebase/functions",Ar="@firebase/functions-compat",Cr="@firebase/installations",kr="@firebase/installations-compat",Rr="@firebase/messaging",Pr="@firebase/messaging-compat",Or="@firebase/performance",Nr="@firebase/performance-compat",Dr="@firebase/remote-config",Lr="@firebase/remote-config-compat",Mr="@firebase/storage",Ur="@firebase/storage-compat",xr="@firebase/firestore",Br="@firebase/vertexai-preview",Fr="@firebase/firestore-compat",Vr="firebase",$r="10.12.2";/**
+ */const U=new Vt("@firebase/app"),mr="@firebase/app-compat",_r="@firebase/analytics-compat",vr="@firebase/analytics",Ir="@firebase/app-check-compat",yr="@firebase/app-check",br="@firebase/auth",wr="@firebase/auth-compat",Er="@firebase/database",Tr="@firebase/database-compat",Sr="@firebase/functions",Ar="@firebase/functions-compat",Cr="@firebase/installations",kr="@firebase/installations-compat",Rr="@firebase/messaging",Pr="@firebase/messaging-compat",Or="@firebase/performance",Nr="@firebase/performance-compat",Dr="@firebase/remote-config",Lr="@firebase/remote-config-compat",Mr="@firebase/storage",Ur="@firebase/storage-compat",xr="@firebase/firestore",Br="@firebase/vertexai-preview",Fr="@firebase/firestore-compat",Vr="firebase",$r="10.12.3";/**
  * @license
  * Copyright 2019 Google LLC
  *
@@ -328,7 +328,7 @@ import{k as An,l as it,m as re,n as st}from"./index-CerLAEDk.js";var ot={};/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */function ti(n){K(new W("platform-logger",e=>new pr(e),"PRIVATE")),K(new W("heartbeat",e=>new Qr(e),"PRIVATE")),V(De,dt,n),V(De,dt,"esm2017"),V("fire-js","")}ti("");var ni="firebase",ri="10.12.2";/**
+ */function ti(n){K(new W("platform-logger",e=>new pr(e),"PRIVATE")),K(new W("heartbeat",e=>new Qr(e),"PRIVATE")),V(De,dt,n),V(De,dt,"esm2017"),V("fire-js","")}ti("");var ni="firebase",ri="10.12.3";/**
  * @license
  * Copyright 2020 Google LLC
  *
@@ -1318,7 +1318,7 @@ import{k as An,l as it,m as re,n as st}from"./index-CerLAEDk.js";var ot={};/**
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */const Pe="webStorageSupport";class Js{constructor(){this.eventManagers={},this.iframes={},this.originValidationPromises={},this._redirectPersistence=mn,this._completeRedirectFn=Is,this._overrideRedirectResult=ms}async _openPopup(e,t,r,i){var s;S((s=this.eventManagers[e._key()])===null||s===void 0?void 0:s.manager,"_initialize() not called before _openPopup()");const o=await Rt(e,t,r,Ue(),i);return js(e,o,Xe())}async _openRedirect(e,t,r,i){await this._originValidation(e);const s=await Rt(e,t,r,Ue(),i);return Qi(s),new Promise(()=>{})}_initialize(e){const t=e._key();if(this.eventManagers[t]){const{manager:i,promise:s}=this.eventManagers[t];return i?Promise.resolve(i):(S(s,"If manager is not set, promise should be"),s)}const r=this.initAndGetManager(e);return this.eventManagers[t]={promise:r},r.catch(()=>{delete this.eventManagers[t]}),r}async initAndGetManager(e){const t=await xs(e),r=new bs(e);return t.register("authEvent",i=>(u(i==null?void 0:i.authEvent,e,"invalid-auth-event"),{status:r.onEvent(i.authEvent)?"ACK":"ERROR"}),gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER),this.eventManagers[e._key()]={manager:r},this.iframes[e._key()]=t,r}_isIframeWebStorageSupported(e,t){this.iframes[e._key()].send(Pe,{type:Pe},i=>{var s;const o=(s=i==null?void 0:i[0])===null||s===void 0?void 0:s[Pe];o!==void 0&&t(!!o),v(e,"internal-error")},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER)}_originValidation(e){const t=e._key();return this.originValidationPromises[t]||(this.originValidationPromises[t]=As(e)),this.originValidationPromises[t]}get _shouldInitProactively(){return cn()||qe()||me()}}const Xs=Js;var Pt="@firebase/auth",Ot="1.7.4";/**
+ */const Pe="webStorageSupport";class Js{constructor(){this.eventManagers={},this.iframes={},this.originValidationPromises={},this._redirectPersistence=mn,this._completeRedirectFn=Is,this._overrideRedirectResult=ms}async _openPopup(e,t,r,i){var s;S((s=this.eventManagers[e._key()])===null||s===void 0?void 0:s.manager,"_initialize() not called before _openPopup()");const o=await Rt(e,t,r,Ue(),i);return js(e,o,Xe())}async _openRedirect(e,t,r,i){await this._originValidation(e);const s=await Rt(e,t,r,Ue(),i);return Qi(s),new Promise(()=>{})}_initialize(e){const t=e._key();if(this.eventManagers[t]){const{manager:i,promise:s}=this.eventManagers[t];return i?Promise.resolve(i):(S(s,"If manager is not set, promise should be"),s)}const r=this.initAndGetManager(e);return this.eventManagers[t]={promise:r},r.catch(()=>{delete this.eventManagers[t]}),r}async initAndGetManager(e){const t=await xs(e),r=new bs(e);return t.register("authEvent",i=>(u(i==null?void 0:i.authEvent,e,"invalid-auth-event"),{status:r.onEvent(i.authEvent)?"ACK":"ERROR"}),gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER),this.eventManagers[e._key()]={manager:r},this.iframes[e._key()]=t,r}_isIframeWebStorageSupported(e,t){this.iframes[e._key()].send(Pe,{type:Pe},i=>{var s;const o=(s=i==null?void 0:i[0])===null||s===void 0?void 0:s[Pe];o!==void 0&&t(!!o),v(e,"internal-error")},gapi.iframes.CROSS_ORIGIN_IFRAMES_FILTER)}_originValidation(e){const t=e._key();return this.originValidationPromises[t]||(this.originValidationPromises[t]=As(e)),this.originValidationPromises[t]}get _shouldInitProactively(){return cn()||qe()||me()}}const Xs=Js;var Pt="@firebase/auth",Ot="1.7.5";/**
  * @license
  * Copyright 2020 Google LLC
  *

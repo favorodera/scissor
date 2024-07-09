@@ -3,8 +3,8 @@ import '../scss/index.scss'
 import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 
-import index from '../index.vue'
-import router from '../router/router'
+import index from 'root/index.vue'
+import router from 'root/router/router'
 
 const app = createApp(index)
 

@@ -62,7 +62,7 @@ input {
   max-width: 45rem;
   border-radius: 1rem;
   padding: 1.3125rem 1.57425rem 1.3125rem 1.5625rem;
-  border: 0.125rem solid #353c4a;
+  border: 0.065rem solid #353c4a;
   background: #181e29;
   box-shadow: 0rem 0.25rem 0.625rem 0rem #0000001a;
 }
@@ -90,12 +90,12 @@ input::placeholder {
 }
 
 button {
-  @include function.typography(1.5rem, 400, GilroyBold, #c9ced6, 1.75rem, center);
+  @include function.typography(1.5rem, 400, GilroySemiBold, #c9ced6, 1.75rem, center);
   width: 100%;
   max-width: 11rem;
   border-radius: 1rem;
   padding: 1rem;
-  border: 0.125rem solid #353c4a;
+  border: 0.065rem solid #353c4a;
   background: #181e29;
   box-shadow: 0rem 0.25rem 0.625rem 0rem #0000001a;
   cursor: pointer;
@@ -103,7 +103,7 @@ button {
 }
 
 button:hover {
-  border: 0.125rem solid #0065fe;
+  border: 0.065rem solid #0065fe;
   background: #353c4a8f;
 }
 </style>

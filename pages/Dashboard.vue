@@ -9,7 +9,7 @@ const menuTogglers = useMenuTogglersStore()
 </script>
 
 <template>
-  <section>
+  <section class="dashboard">
     <nav>
       <div class="user" @click="menuTogglers.toggleUserMenu">
         <div class="user-text-container">
@@ -40,7 +40,7 @@ const menuTogglers = useMenuTogglersStore()
 <style scoped lang="scss">
 @use '../scss/functions.scss' as function;
 
-section {
+.dashboard {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -51,7 +51,6 @@ section {
 }
 
 main[aria-haspopup='true'] {
-  position: relative;
   filter: blur(0.3rem);
   pointer-events: none;
 }

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { useAuthenticationStore } from '../stores/authentication'
-const authentication = useAuthenticationStore()
-import { useMenuTogglersStore } from '../stores/menu-togglers'
-const menuTogglers = useMenuTogglersStore()
 import Form from '../components/Form.vue'
+import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
+import { useAuthenticationStore } from '../stores/authentication'
+import { useMenuTogglersStore } from '../stores/menu-togglers'
+const authentication = useAuthenticationStore()
+const menuTogglers = useMenuTogglersStore()
 </script>
 
 <template>
@@ -31,6 +32,7 @@ import UserMenu from '../components/UserMenu.vue'
 
     <main :aria-haspopup="menuTogglers.isUserMenuOpen">
       <Form />
+      <History />
     </main>
   </section>
 </template>
@@ -116,8 +118,10 @@ nav {
 main {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2.81rem;
   transition: all 0.5s ease-in-out;
 }
 </style>

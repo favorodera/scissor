@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useMenuTogglersStore } from '../stores/menu-togglers'
-import { useAuthenticationStore } from '@/stores/authentication'
+import { useAuthenticationStore } from '../stores/authentication'
 const authentication = useAuthenticationStore()
 const menuTogglers = useMenuTogglersStore()
 </script>

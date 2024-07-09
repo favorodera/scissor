@@ -1,12 +1,6 @@
 @use './functions.scss' as function;
 
 @font-face {
-  font-family: 'GilroyThin';
-  src: url('../media/fonts/gilroy/Gilroy-Thin.ttf') format('truetype');
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'GilroyMedium';
   src: url('../media/fonts/gilroy/Gilroy-Medium.ttf') format('truetype');
   font-display: swap;
@@ -35,7 +29,7 @@
   box-sizing: border-box;
   outline: none;
   resize: none;
-  color: #141414;
+  color: aliceblue;
 }
 
 button {

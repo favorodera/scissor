@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./', import.meta.url))
+      root: fileURLToPath(new URL('./', import.meta.url))
     }
   }
 })

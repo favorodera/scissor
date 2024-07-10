@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useTogglersStore } from 'root/stores/togglers'
+const togglers = useTogglersStore()
+</script>
 
 <template>
-  <section id="about">
+  <section id="about" :aria-haspopup="togglers.isAuthenticationOpen">
     <div class="stats-container">
       <p class="stats-heading">
         One Stop, <br />Four <span class="stats-heading-highlight">Possibilities</span>.
@@ -113,6 +116,10 @@ section {
   margin-top: 5.8125rem;
 }
 
+section[aria-haspopup='true'] {
+  filter: blur(0.3rem);
+  pointer-events: none;
+}
 .stats-container {
   display: flex;
   align-items: center;

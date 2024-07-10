@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import FAQBlocks from './FAQBlocks.vue'
+import { useTogglersStore } from 'root/stores/togglers'
+const togglers = useTogglersStore()
 </script>
 
 <template>
-  <section id="faq">
+  <section id="faq" :aria-haspopup="togglers.isAuthenticationOpen">
     <div class="faqs-container">
       <div class="faq-header-container">
         <div class="faq-header-line"><img src="../media/svg/line.svg" alt="line" /></div>
@@ -44,6 +46,11 @@ section {
   align-items: center;
   justify-content: center;
   padding-bottom: 9.69rem;
+}
+
+section[aria-haspopup='true'] {
+  filter: blur(0.3rem);
+  pointer-events: none;
 }
 
 .faqs-container {

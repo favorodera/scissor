@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+import { useTogglersStore } from 'root/stores/togglers'
+
+const togglers = useTogglersStore()
 
 const windowWidth = ref(window.innerWidth)
 
@@ -17,41 +20,43 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="intro">
-    <div class="intro-text-container">
-      <p class="intro-text">
-        Optimize Your Online Experience with Our Advanced URL Shortening Solution
-      </p>
-      <p class="intro-description">
-        Personalize your shortened URLs to align with your brand identity. Utilize custom slugs,
-        branded links, and domain customization options to reinforce your brand presence and enhance
-        user engagement.
-      </p>
-    </div>
-    <div class="intro-cta-container">
-      <RouterLink to="/authentication" class="intro-cta-button">Get Started</RouterLink>
-      <a href="#about" class="intro-cta-text">Learn More</a>
-    </div>
-  </div>
-
-  <div class="hero-visuals-container">
-    <div class="hero-visual-image">
-      <div class="coupled-links">
-        <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
-        <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
-        <div class="link" v-if="windowWidth >= 450">
-          <img src="../media/svg/link.svg" alt="link" />
-        </div>
+  <section :aria-haspopup="togglers.isAuthenticationOpen">
+    <div class="intro">
+      <div class="intro-text-container">
+        <p class="intro-text">
+          Optimize Your Online Experience with Our Advanced URL Shortening Solution
+        </p>
+        <p class="intro-description">
+          Personalize your shortened URLs to align with your brand identity. Utilize custom slugs,
+          branded links, and domain customization options to reinforce your brand presence and
+          enhance user engagement.
+        </p>
       </div>
-      <div class="arrow"><img src="../media/svg/arrow.svg" alt="arrow" /></div>
-      <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
+      <div class="intro-cta-container">
+        <button @click="togglers.toggleAuthentication" class="intro-cta-button">Get Started</button>
+        <a href="#about" class="intro-cta-text">Learn More</a>
+      </div>
     </div>
-    <p class="hero-visual-text">
-      Seamlessly transform your long <span class="hero-visual-text-highlight">URLs</span> into
-      <span class="hero-visual-text-highlight">concise</span> and
-      <span class="hero-visual-text-highlight">shareable</span> links with just few clicks.
-    </p>
-  </div>
+
+    <div class="hero-visuals-container">
+      <div class="hero-visual-image">
+        <div class="coupled-links">
+          <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
+          <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
+          <div class="link" v-if="windowWidth >= 450">
+            <img src="../media/svg/link.svg" alt="link" />
+          </div>
+        </div>
+        <div class="arrow"><img src="../media/svg/arrow.svg" alt="arrow" /></div>
+        <div class="link"><img src="../media/svg/link.svg" alt="link" /></div>
+      </div>
+      <p class="hero-visual-text">
+        Seamlessly transform your long <span class="hero-visual-text-highlight">URLs</span> into
+        <span class="hero-visual-text-highlight">concise</span> and
+        <span class="hero-visual-text-highlight">shareable</span> links with just few clicks.
+      </p>
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
@@ -65,6 +70,11 @@ onUnmounted(() => {
   justify-content: center;
   gap: 2rem;
   margin-top: 6.62rem;
+}
+
+section[aria-haspopup='true'] {
+  filter: blur(0.3rem);
+  cursor: pointer;
 }
 
 .intro-text-container {

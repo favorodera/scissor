@@ -1,7 +1,14 @@
+<script setup lang="ts">
+import { useQrCodeStore } from 'root/stores/qr-code'
+const qrCodeStore = useQrCodeStore()
+</script>
+
 <template>
   <div class="history-block">
     <div class="qr-code-and-action-container">
-      <div class="qr-code"><img src="" alt="" /></div>
+      <div class="qr-code">
+        <img :src="'data:image/png;base64,' + qrCodeStore.qrCode" alt="qr-code" />
+      </div>
       <button class="delete-button">Delete</button>
     </div>
     <div class="other-history-block-details">
@@ -14,7 +21,7 @@
         <p>https://linkly.com/Bn41aCOlnxj</p>
       </div>
       <div class="time">
-        <p class="time-header">Time:</p>
+        <p class="time-header">Created:</p>
         <p>1 day ago</p>
       </div>
       <div class="clicks">
@@ -44,9 +51,6 @@
   flex: 1 1 28.8333rem;
 }
 
-.history-block:last-child {
-}
-
 .qr-code-and-action-container {
   display: flex;
   flex-direction: column;
@@ -59,6 +63,12 @@
   @include function.mediaContainers(5rem, 5rem);
   border-radius: 0.25rem;
   background: #000000;
+
+  img {
+    max-width: 5rem;
+    max-height: 5rem;
+    border-radius: 0.25rem;
+  }
 }
 
 .delete-button {

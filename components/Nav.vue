@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
-import { useMenuTogglersStore } from '../stores/menu-togglers'
-const menuTogglers = useMenuTogglersStore()
+import { useTogglersStore } from '../stores/togglers'
+const togglers = useTogglersStore()
 
 const windowWidth = ref(window.innerWidth)
 
@@ -20,7 +20,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <nav>
+  <nav :aria-haspopup="togglers.isAuthenticationOpen">
     <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
       <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
       <div class="logo-line"></div>
@@ -32,9 +32,11 @@ onUnmounted(() => {
       <li><a href="#faq">FAQs</a></li>
     </ul>
 
-    <RouterLink to="/authentication" class="login" v-if="windowWidth >= 600">Login</RouterLink>
+    <button @click="togglers.toggleAuthentication()" class="login" v-if="windowWidth >= 600">
+      Login
+    </button>
 
-    <div class="hamburger" v-if="windowWidth < 600" @click="menuTogglers.toggleMobileNav()">
+    <div class="hamburger" v-if="windowWidth < 600" @click="togglers.toggleMobileNav()">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
@@ -51,6 +53,11 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+nav[aria-haspopup='true'] {
+  filter: blur(0.3rem);
+  pointer-events: none;
 }
 
 .logo-container {

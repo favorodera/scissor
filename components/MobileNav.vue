@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
-import { useMenuTogglersStore } from '../stores/menu-togglers'
-const menuTogglers = useMenuTogglersStore()
+import { useTogglersStore } from '../stores/togglers'
+const togglers = useTogglersStore()
 </script>
 
 <template>
   <Transition name="mobile-nav" mode="out-in">
-    <div class="mobile-nav" v-if="menuTogglers.isMobileNavOpen === true">
+    <div
+      class="mobile-nav"
+      v-if="togglers.isMobileNavOpen === true"
+      :aria-haspopup="togglers.isAuthenticationOpen"
+    >
       <nav>
         <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
           <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
@@ -14,8 +18,8 @@ const menuTogglers = useMenuTogglersStore()
           <p class="logo-text">SCISSOR</p>
         </RouterLink>
         <div class="login-and-escape-container">
-          <RouterLink to="/authentication" class="login">Login</RouterLink>
-          <button class="close-btn" @click="menuTogglers.toggleMobileNav">
+          <button @click="togglers.toggleAuthentication()" class="login">Login</button>
+          <button class="close-btn" @click="togglers.toggleMobileNav">
             <img src="../media/svg/escape.svg" alt="escape" />
           </button>
         </div>
@@ -40,6 +44,11 @@ const menuTogglers = useMenuTogglersStore()
   padding: 0.75rem;
   align-items: center;
   transition: transform 0.3s ease-in-out;
+}
+
+.mobile-nav[aria-haspopup='true'] {
+  filter: blur(0.3rem);
+  pointer-events: none;
 }
 
 .mobile-nav-enter-active,

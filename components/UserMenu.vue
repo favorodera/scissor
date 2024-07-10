@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useMenuTogglersStore } from '../stores/menu-togglers'
+import { useTogglersStore } from '../stores/togglers'
 import { useAuthenticationStore } from '../stores/authentication'
 const authentication = useAuthenticationStore()
-const menuTogglers = useMenuTogglersStore()
+const togglers = useTogglersStore()
 </script>
 
 <template>
   <Transition name="user-menu" mode="out-in">
-    <div class="user-menu" v-if="menuTogglers.isUserMenuOpen === true">
+    <div class="user-menu" v-if="togglers.isUserMenuOpen === true">
       <div class="user-info">
         <div class="user-image"><img :src="authentication.userImage" alt="user-image" /></div>
 

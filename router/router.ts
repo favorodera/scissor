@@ -10,11 +10,6 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/authentication',
-      name: 'authentication',
-      component: () => import('../pages/Authentication.vue')
-    },
-    {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('../pages/Dashboard.vue')

@@ -1,5 +1,10 @@
+<script setup lang="ts">
+import { useTogglersStore } from 'root/stores/togglers'
+const togglers = useTogglersStore()
+</script>
+
 <template>
-  <footer>
+  <footer :aria-haspopup="togglers.isAuthenticationOpen">
     <div class="logo-container">
       <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
       <div class="logo-line"></div>
@@ -20,6 +25,11 @@ footer {
   align-items: center;
   justify-content: space-between;
   padding-top: 5.94rem;
+}
+
+footer[aria-haspopup='true'] {
+  filter: blur(0.3rem);
+  pointer-events: none;
 }
 
 .logo-container {

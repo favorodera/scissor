@@ -1,8 +1,14 @@
+<script setup lang="ts">
+import { useTogglersStore } from 'root/stores/togglers'
+
+const togglers = useTogglersStore()
+</script>
+
 <template>
-  <section>
+  <section :aria-haspopup="togglers.isAuthenticationOpen">
     <div class="CTA-container">
       <p class="CTA-text">Revolutionizing Link Optimization!</p>
-      <RouterLink to="/authentication" class="CTA-button">Get Started</RouterLink>
+      <button @click="togglers.toggleAuthentication" class="CTA-button">Get Started</button>
     </div>
   </section>
 </template>
@@ -18,6 +24,11 @@ section {
 
   height: 18.69rem;
   border-radius: 1rem;
+}
+
+section[aria-haspopup='true'] {
+  filter: blur(0.3rem);
+  pointer-events: none;
 }
 
 .CTA-container {

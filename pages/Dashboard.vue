@@ -1,17 +1,24 @@
 <script setup lang="ts">
+import { onBeforeMount } from 'vue'
 import Form from '../components/Form.vue'
 import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
 import { useAuthenticationStore } from '../stores/authentication'
-import { useMenuTogglersStore } from '../stores/menu-togglers'
+import { useTogglersStore } from '../stores/togglers'
+import router from 'root/router/router'
 const authentication = useAuthenticationStore()
-const menuTogglers = useMenuTogglersStore()
+const togglers = useTogglersStore()
+onBeforeMount(() => {
+  if (!authentication.userEmail) {
+    router.push('/')
+  }
+})
 </script>
 
 <template>
   <section class="dashboard">
     <nav>
-      <div class="user" @click="menuTogglers.toggleUserMenu">
+      <div class="user" @click="togglers.toggleUserMenu">
         <div class="user-text-container">
           <p class="welcome-text">Welcome</p>
           <p class="username">{{ authentication.username }}</p>
@@ -21,7 +28,7 @@ const menuTogglers = useMenuTogglersStore()
             <img
               src="../media/svg/down.svg"
               alt="down-arrow"
-              v-if="menuTogglers.isUserMenuOpen === false"
+              v-if="togglers.isUserMenuOpen === false"
             />
             <img src="../media/svg/minus-user-menu.svg" alt="minus" v-else />
           </Transition>
@@ -30,7 +37,7 @@ const menuTogglers = useMenuTogglersStore()
     </nav>
     <UserMenu />
 
-    <main :aria-haspopup="menuTogglers.isUserMenuOpen">
+    <main :aria-haspopup="togglers.isUserMenuOpen">
       <Form />
       <History />
     </main>

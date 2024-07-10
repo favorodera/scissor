@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useQrCodeStore } from 'root/stores/qr-code'
+
+const qrCodeStore = useQrCodeStore()
+</script>
 
 <template>
   <form action="" method="get">
@@ -29,7 +33,7 @@
       <input type="text" name="alias" id="alias" placeholder="Enter Alias" class="alias-input" />
     </div>
 
-    <button type="submit">Shorten</button>
+    <button type="submit" @click.prevent="qrCodeStore.generateQrCode">Shorten</button>
   </form>
 </template>
 

@@ -6,23 +6,24 @@ import FAQ from '../components/FAQ.vue'
 import CTA from '../components/CTA.vue'
 import MobileNav from '../components/MobileNav.vue'
 import Footer from '../components/Footer.vue'
+import Authentication from '../components/Authentication.vue'
 </script>
 
 <template>
-  <section class="hero-section">
+  <section>
     <Nav />
     <MobileNav />
     <Hero />
+    <About />
+    <FAQ />
+    <CTA />
+    <Footer />
+    <Authentication />
   </section>
-  <About />
-  <FAQ />
-  <CTA />
-  <Footer />
 </template>
 
 <style scoped lang="scss">
-.hero-section {
-  width: 100%;
+section {
   display: flex;
   flex-direction: column;
   align-items: center;

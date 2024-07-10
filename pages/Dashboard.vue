@@ -17,7 +17,8 @@ onBeforeMount(() => {
 
 <template>
   <section class="dashboard">
-    <nav>
+    <nav :aria-haspopup="togglers.isUserMenuOpen">
+      <RouterLink to="/" class="back"> Back</RouterLink>
       <div class="user" @click="togglers.toggleUserMenu">
         <div class="user-text-container">
           <p class="welcome-text">Welcome</p>
@@ -62,11 +63,27 @@ main[aria-haspopup='true'] {
   pointer-events: none;
 }
 
+nav[aria-haspopup='true'] {
+  .back {
+    filter: blur(0.3rem);
+    pointer-events: none;
+  }
+}
+
 nav {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+
+.back {
+  @include function.typography(1.25rem, 400, GilroySemiBold, #ffffff, 1.125rem, center);
+  transition: all 0.5s ease-in-out;
+}
+
+.back:hover {
+  color: #0065fe;
 }
 
 .user {

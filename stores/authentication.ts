@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { auth, signInWithPopup, provider, signOut } from '../ts/firebase-config'
 import { computed, ref } from 'vue'
 import router from '../router/router'
+import { useTogglersStore } from './togglers'
 
 interface userData {
   displayName: string
@@ -10,6 +11,7 @@ interface userData {
 }
 
 export const useAuthenticationStore = defineStore('authentication', () => {
+  const togglers = useTogglersStore()
   const userData = ref<userData | null>(null)
   const isLoggedIn = ref(false)
   const parsedUserData = localStorage.getItem('userData')
@@ -33,6 +35,7 @@ export const useAuthenticationStore = defineStore('authentication', () => {
       localStorage.setItem('userData', JSON.stringify(userData.value))
       router.push('/dashboard')
       isLoggedIn.value = true
+      togglers.toggleAuthentication()
       return userData.value
     } catch (error) {
       return null
@@ -46,6 +49,7 @@ export const useAuthenticationStore = defineStore('authentication', () => {
       localStorage.removeItem('userData')
       router.push('/')
       isLoggedIn.value = false
+      togglers.isUserMenuOpen = false
       return userData.value
     } catch (error) {
       return null

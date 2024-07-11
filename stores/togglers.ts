@@ -4,7 +4,7 @@ import { ref } from 'vue'
 export const useTogglersStore = defineStore('togglers', () => {
   const isMobileNavOpen = ref(false)
   const isUserMenuOpen = ref(false)
-  const isAuthenticationOpen = ref(false)
+  const isAuthenticationPopupOpen = ref(false)
 
   const toggleMobileNav = () => {
     isMobileNavOpen.value = !isMobileNavOpen.value
@@ -14,8 +14,8 @@ export const useTogglersStore = defineStore('togglers', () => {
     isUserMenuOpen.value = !isUserMenuOpen.value
   }
 
-  const toggleAuthentication = () => {
-    isAuthenticationOpen.value = !isAuthenticationOpen.value
+  const toggleAuthenticationPopup = () => {
+    isAuthenticationPopupOpen.value = !isAuthenticationPopupOpen.value
   }
 
   return {
@@ -23,7 +23,7 @@ export const useTogglersStore = defineStore('togglers', () => {
     toggleMobileNav,
     isUserMenuOpen,
     toggleUserMenu,
-    isAuthenticationOpen,
-    toggleAuthentication
+    isAuthenticationPopupOpen,
+    toggleAuthenticationPopup
   }
 })

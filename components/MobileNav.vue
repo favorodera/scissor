@@ -9,7 +9,7 @@ const togglers = useTogglersStore()
     <div
       class="mobile-nav"
       v-if="togglers.isMobileNavOpen === true"
-      :aria-haspopup="togglers.isAuthenticationOpen"
+      :aria-haspopup="togglers.isAuthenticationPopupOpen"
     >
       <nav>
         <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
@@ -18,7 +18,7 @@ const togglers = useTogglersStore()
           <p class="logo-text">SCISSOR</p>
         </RouterLink>
         <div class="login-and-escape-container">
-          <button @click="togglers.toggleAuthentication()" class="login">Login</button>
+          <button @click="togglers.toggleAuthenticationPopup()" class="login">Login</button>
           <button class="close-btn" @click="togglers.toggleMobileNav">
             <img src="../media/svg/escape.svg" alt="escape" />
           </button>

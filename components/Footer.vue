@@ -4,7 +4,7 @@ const togglers = useTogglersStore()
 </script>
 
 <template>
-  <footer :aria-haspopup="togglers.isAuthenticationOpen">
+  <footer :aria-haspopup="togglers.isAuthenticationPopupOpen">
     <div class="logo-container">
       <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
       <div class="logo-line"></div>

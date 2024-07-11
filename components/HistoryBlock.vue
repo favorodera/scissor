@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useQrCodeStore } from 'root/stores/qr-code'
+import { useQrCodeStore } from 'root/stores/code'
 const qrCodeStore = useQrCodeStore()
 </script>
 

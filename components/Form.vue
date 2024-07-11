@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { useQrCodeStore } from 'root/stores/qr-code'
-
-const qrCodeStore = useQrCodeStore()
+import { useLinkStore } from 'root/stores/link'
+const linkStore = useLinkStore()
+let longUrl = ''
+let domain = ''
+let alias = ''
 </script>
 
 <template>
@@ -14,6 +16,7 @@ const qrCodeStore = useQrCodeStore()
         id="long-url"
         placeholder="Enter Long URL"
         class="long-url-input"
+        v-model="longUrl"
       />
     </div>
     <div class="domain-container">
@@ -23,17 +26,25 @@ const qrCodeStore = useQrCodeStore()
         name="domain"
         id="domain"
         placeholder="Enter Domain"
-        value="https://tinyurl.com"
-        readonly
         class="domain-input"
+        v-model="domain"
       />
     </div>
     <div class="alias-container">
       <label for="alias">Alias</label>
-      <input type="text" name="alias" id="alias" placeholder="Enter Alias" class="alias-input" />
+      <input
+        type="text"
+        name="alias"
+        id="alias"
+        placeholder="Enter Alias"
+        class="alias-input"
+        v-model="alias"
+      />
     </div>
 
-    <button type="submit" @click.prevent="qrCodeStore.generateQrCode">Shorten</button>
+    <button type="submit" @click.prevent="linkStore.generateLink(longUrl, domain, alias)" disabled>
+      Shorten
+    </button>
   </form>
 </template>
 

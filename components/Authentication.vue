@@ -7,8 +7,8 @@ const togglers = useTogglersStore()
 
 <template>
   <Transition name="authentication" mode="out-in">
-    <div class="authentication-container" v-if="togglers.isAuthenticationOpen === true">
-      <button class="close-btn" @click="togglers.toggleAuthentication()">
+    <div class="authentication-container" v-if="togglers.isAuthenticationPopupOpen === true">
+      <button class="close-btn" @click="togglers.toggleAuthenticationPopup()">
         <img src="../media/svg/escape-white.svg" alt=" escape" />
       </button>
       <button class="authentication-button" @click="authentication.signIn()">

@@ -20,7 +20,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <nav :aria-haspopup="togglers.isAuthenticationOpen">
+  <nav :aria-haspopup="togglers.isAuthenticationPopupOpen">
     <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
       <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
       <div class="logo-line"></div>
@@ -32,7 +32,7 @@ onUnmounted(() => {
       <li><a href="#faq">FAQs</a></li>
     </ul>
 
-    <button @click="togglers.toggleAuthentication()" class="login" v-if="windowWidth >= 600">
+    <button @click="togglers.toggleAuthenticationPopup()" class="login" v-if="windowWidth >= 600">
       Login
     </button>
 

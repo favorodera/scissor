@@ -5,10 +5,10 @@ const togglers = useTogglersStore()
 </script>
 
 <template>
-  <section :aria-haspopup="togglers.isAuthenticationOpen">
+  <section :aria-haspopup="togglers.isAuthenticationPopupOpen">
     <div class="CTA-container">
       <p class="CTA-text">Revolutionizing Link Optimization!</p>
-      <button @click="togglers.toggleAuthentication" class="CTA-button">Get Started</button>
+      <button @click="togglers.toggleAuthenticationPopup" class="CTA-button">Get Started</button>
     </div>
   </section>
 </template>

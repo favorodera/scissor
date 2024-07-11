@@ -20,7 +20,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section :aria-haspopup="togglers.isAuthenticationOpen">
+  <section :aria-haspopup="togglers.isAuthenticationPopupOpen">
     <div class="intro">
       <div class="intro-text-container">
         <p class="intro-text">
@@ -33,7 +33,9 @@ onUnmounted(() => {
         </p>
       </div>
       <div class="intro-cta-container">
-        <button @click="togglers.toggleAuthentication" class="intro-cta-button">Get Started</button>
+        <button @click="togglers.toggleAuthenticationPopup" class="intro-cta-button">
+          Get Started
+        </button>
         <a href="#about" class="intro-cta-text">Learn More</a>
       </div>
     </div>

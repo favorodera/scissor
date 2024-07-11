@@ -4,7 +4,7 @@ const togglers = useTogglersStore()
 </script>
 
 <template>
-  <section id="about" :aria-haspopup="togglers.isAuthenticationOpen">
+  <section id="about" :aria-haspopup="togglers.isAuthenticationPopupOpen">
     <div class="stats-container">
       <p class="stats-heading">
         One Stop, <br />Four <span class="stats-heading-highlight">Possibilities</span>.

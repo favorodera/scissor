@@ -5,7 +5,7 @@ const togglers = useTogglersStore()
 </script>
 
 <template>
-  <section id="faq" :aria-haspopup="togglers.isAuthenticationOpen">
+  <section id="faq" :aria-haspopup="togglers.isAuthenticationPopupOpen">
     <div class="faqs-container">
       <div class="faq-header-container">
         <div class="faq-header-line"><img src="../media/svg/line.svg" alt="line" /></div>

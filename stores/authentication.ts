@@ -1,42 +1,32 @@
 import { defineStore } from 'pinia'
-import { auth, signInWithPopup, provider, signOut } from '../ts/firebase-config'
-import { computed, ref } from 'vue'
 import router from '../router/router'
+import {
+  auth,
+  dataBase,
+  doc,
+  provider,
+  setDoc,
+  signInWithPopup,
+  signOut
+} from '../ts/firebase-config'
 import { useTogglersStore } from './togglers'
 
-interface userData {
-  displayName: string
-  email: string
-  photoURL: string
-}
-
 export const useAuthenticationStore = defineStore('authentication', () => {
-  const togglers = useTogglersStore()
-  const userData = ref<userData | null>(null)
-  const isLoggedIn = ref(false)
-  const parsedUserData = localStorage.getItem('userData')
-
-  const username = computed(() =>
-    parsedUserData
-      ? JSON.parse(parsedUserData).displayName.split(' ')[0]
-      : userData.value?.displayName.split(' ')[0]
-  )
-  const userEmail = computed(() =>
-    parsedUserData ? JSON.parse(parsedUserData).email : userData.value?.email
-  )
-  const userImage = computed(() =>
-    parsedUserData ? JSON.parse(parsedUserData).photoURL : userData.value?.photoURL
-  )
-
-  const signIn = async (): Promise<userData | null> => {
+  const { toggleAuthenticationPopup, toggleUserMenu } = useTogglersStore()
+  const signIn = async () => {
     try {
-      const result = await signInWithPopup(auth, provider)
-      userData.value = result.user as userData
-      localStorage.setItem('userData', JSON.stringify(userData.value))
+      const user = await signInWithPopup(auth, provider)
+      toggleAuthenticationPopup()
+      await setDoc(doc(dataBase, 'userData', user.user?.email as string), {
+        userInfo: {
+          name: user.user?.displayName,
+          email: user.user?.email,
+          image: user.user?.photoURL
+        },
+        linksInfo: [],
+        qrCodeInfo: []
+      })
       router.push('/dashboard')
-      isLoggedIn.value = true
-      togglers.toggleAuthentication()
-      return userData.value
     } catch (error) {
       return null
     }
@@ -45,24 +35,14 @@ export const useAuthenticationStore = defineStore('authentication', () => {
   const logOut = async () => {
     try {
       signOut(auth)
-      userData.value = null
-      localStorage.removeItem('userData')
+      toggleUserMenu()
       router.push('/')
-      isLoggedIn.value = false
-      togglers.isUserMenuOpen = false
-      return userData.value
-    } catch (error) {
       return null
-    }
+    } catch (error) {}
   }
 
   return {
-    userData: computed(() => userData.value),
-    isLoggedIn,
     signIn,
-    logOut,
-    username,
-    userEmail,
-    userImage
+    logOut
   }
 })

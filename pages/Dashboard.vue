@@ -8,11 +8,6 @@ import { useTogglersStore } from '../stores/togglers'
 import router from 'root/router/router'
 const authentication = useAuthenticationStore()
 const togglers = useTogglersStore()
-onBeforeMount(() => {
-  if (!authentication.userEmail) {
-    router.push('/')
-  }
-})
 </script>
 
 <template>
@@ -22,7 +17,7 @@ onBeforeMount(() => {
       <div class="user" @click="togglers.toggleUserMenu">
         <div class="user-text-container">
           <p class="welcome-text">Welcome</p>
-          <p class="username">{{ authentication.username }}</p>
+          <p class="username">{{}}</p>
         </div>
         <div class="menu-state-icon">
           <Transition name="menu-state-icon" mode="out-in">

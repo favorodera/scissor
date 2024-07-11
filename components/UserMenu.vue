@@ -9,13 +9,11 @@ const togglers = useTogglersStore()
   <Transition name="user-menu" mode="out-in">
     <div class="user-menu" v-if="togglers.isUserMenuOpen === true">
       <div class="user-info">
-        <div class="user-image"><img :src="authentication.userImage" alt="user-image" /></div>
+        <div class="user-image"><img src="" alt="user-image" /></div>
 
         <div class="user-details">
-          <p class="username">{{ authentication.username }}</p>
-          <p class="user-email">
-            {{ authentication.userEmail }}
-          </p>
+          <p class="username"></p>
+          <p class="user-email"></p>
         </div>
       </div>
       <button class="sign-out-button" @click="authentication.logOut">Sign Out</button>

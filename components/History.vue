@@ -14,14 +14,6 @@ const togglers = useTogglersStore()
     </div>
     <div class="history-blocks-container">
       <HistoryBlock />
-      <HistoryBlock />
-      <HistoryBlock />
-      <HistoryBlock />
-      <HistoryBlock />
-      <HistoryBlock />
-      <HistoryBlock />
-      <HistoryBlock />
-      <HistoryBlock />
     </div>
   </section>
 </template>
@@ -49,7 +41,6 @@ section[aria-haspopup='true'] {
   justify-content: center;
   background: #181e29;
   box-shadow: 0rem 0.25rem 0.625rem 0rem #00000026;
-
   padding: 1.3125rem 1.57425rem 1.3125rem 1.5625rem;
   border-radius: 0.625rem 0.625rem 0rem 0rem;
   transition: all 0.5s ease-in-out;
@@ -72,8 +63,8 @@ section[aria-haspopup='true'] {
 
 .history-blocks-container {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18.125rem, 1fr));
   gap: 1rem;
 }
 </style>

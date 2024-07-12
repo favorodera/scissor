@@ -3,17 +3,19 @@ import { useTogglersStore } from '../stores/togglers'
 import { useAuthenticationStore } from '../stores/authentication'
 const authentication = useAuthenticationStore()
 const togglers = useTogglersStore()
+import { useDatabaseStore } from 'root/stores/database'
+const { userData, name, image, email } = useDatabaseStore()
 </script>
 
 <template>
   <Transition name="user-menu" mode="out-in">
     <div class="user-menu" v-if="togglers.isUserMenuOpen === true">
       <div class="user-info">
-        <div class="user-image"><img src="" alt="user-image" /></div>
+        <div class="user-image"><img :src="image" alt="user-image" /></div>
 
         <div class="user-details">
-          <p class="username"></p>
-          <p class="user-email"></p>
+          <p class="username">{{ email.split('@')[0] }}</p>
+          <p class="user-email">{{ email }}</p>
         </div>
       </div>
       <button class="sign-out-button" @click="authentication.logOut">Sign Out</button>

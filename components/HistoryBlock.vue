@@ -1,36 +1,37 @@
 <script setup lang="ts">
-import { useQrCodeStore } from 'root/stores/code'
-const qrCodeStore = useQrCodeStore()
+const parsedLinks = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData') as string).linksInfo
+  : []
 </script>
 
 <template>
-  <div class="history-block">
+  <div class="history-block" v-for="link in parsedLinks" :key="link.linkId">
     <div class="qr-code-and-action-container">
       <div class="qr-code">
-        <img :src="'data:image/png;base64,' + qrCodeStore.qrCode" alt="qr-code" />
+        <img :src="'data:image/png;base64,' + link.qrCode" alt="qr-code" />
       </div>
       <button class="delete-button">Delete</button>
     </div>
     <div class="other-history-block-details">
       <div class="long-url">
         <p class="long-url-header">Original:</p>
-        <p>https://linkly.com/Bn41aCOlnxj</p>
+        <a :href="link.longUrl" target="_blank" rel="noopener noreferrer">{{ link.longUrl }}</a>
       </div>
       <div class="short-url">
         <p class="short-url-header">Shortened:</p>
-        <p>https://linkly.com/Bn41aCOlnxj</p>
+        <a :href="link.shortUrl" target="_blank" rel="noopener noreferrer">{{ link.shortUrl }}</a>
       </div>
       <div class="time">
         <p class="time-header">Created:</p>
-        <p>1 day ago</p>
+        <p>{{ link.timeCreated }}</p>
       </div>
       <div class="clicks">
         <p class="clicks-header">Clicks:</p>
-        <p>1</p>
+        <p>{{ link.clicks }}</p>
       </div>
       <div class="status">
         <p class="status-header">Status:</p>
-        <p>Active</p>
+        <p>{{ link.status }}</p>
       </div>
     </div>
   </div>
@@ -109,8 +110,8 @@ const qrCodeStore = useQrCodeStore()
   min-width: 5rem;
 }
 
-.long-url-header + p,
-.short-url-header + p,
+.long-url-header + a,
+.short-url-header + a,
 .time-header + p,
 .clicks-header + p,
 .status-header + p {
@@ -121,5 +122,11 @@ const qrCodeStore = useQrCodeStore()
   text-overflow: ellipsis;
   white-space: nowrap;
   flex: 1 1 max-content;
+  transition: all 0.5s ease-in-out;
+}
+
+.long-url-header + a:hover,
+.short-url-header + a:hover {
+  color: #0065fe;
 }
 </style>

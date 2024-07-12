@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useLinkStore } from 'root/stores/link'
-const linkStore = useLinkStore()
+import { useShortenerStore } from 'root/stores/shortener'
+const shortener = useShortenerStore()
 let longUrl = ''
-let domain = ''
 let alias = ''
 </script>
 
@@ -27,7 +26,8 @@ let alias = ''
         id="domain"
         placeholder="Enter Domain"
         class="domain-input"
-        v-model="domain"
+        value="https://linkdom.co"
+        readonly
       />
     </div>
     <div class="alias-container">
@@ -42,9 +42,7 @@ let alias = ''
       />
     </div>
 
-    <button type="submit" @click.prevent="linkStore.generateLink(longUrl, domain, alias)" disabled>
-      Shorten
-    </button>
+    <button type="submit" @click.prevent="shortener.generateLink(longUrl, alias)">Shorten</button>
   </form>
 </template>
 

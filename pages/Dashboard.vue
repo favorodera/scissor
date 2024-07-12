@@ -3,11 +3,15 @@ import { onBeforeMount } from 'vue'
 import Form from '../components/Form.vue'
 import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
-import { useAuthenticationStore } from '../stores/authentication'
 import { useTogglersStore } from '../stores/togglers'
-import router from 'root/router/router'
-const authentication = useAuthenticationStore()
+import { useDatabaseStore } from 'root/stores/database'
+
 const togglers = useTogglersStore()
+const { fetchUserData, name } = useDatabaseStore()
+
+onBeforeMount(() => {
+  fetchUserData()
+})
 </script>
 
 <template>
@@ -17,7 +21,7 @@ const togglers = useTogglersStore()
       <div class="user" @click="togglers.toggleUserMenu">
         <div class="user-text-container">
           <p class="welcome-text">Welcome</p>
-          <p class="username">{{}}</p>
+          <p class="username">{{ name.split(' ')[0] }}</p>
         </div>
         <div class="menu-state-icon">
           <Transition name="menu-state-icon" mode="out-in">

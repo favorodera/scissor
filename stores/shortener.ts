@@ -13,7 +13,8 @@ import {
 import { useDatabaseStore } from './database'
 
 export const useShortenerStore = defineStore('shortener', () => {
-  const { fetchUserData } = useDatabaseStore()
+  const { fetchUserData, parsedUserData, email } = useDatabaseStore()
+
   const generateLinkOptions = {
     method: 'POST',
     url: 'https://ultrafast-url-shortener-with-customizations.p.rapidapi.com/ext/api/url/add',
@@ -39,6 +40,46 @@ export const useShortenerStore = defineStore('shortener', () => {
     headers: {
       'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
       'x-rapidapi-host': 'qr-code-generator20.p.rapidapi.com'
+    }
+  }
+
+  const fetchAnalytics = async (): Promise<Array<{ linkId: string; clicks: number }>> => {
+    try {
+      const analyticsData: Array<{ linkId: string; clicks: number }> = []
+      const linksInfo = JSON.parse(parsedUserData as string).linksInfo
+
+      for (const linkInfo of linksInfo) {
+        const linkId: string = linkInfo.linkId
+        const getAnalyticsOptions = {
+          method: 'GET',
+          url: `https://ultrafast-url-shortener-with-customizations.p.rapidapi.com/ext/api/url/${linkId}`,
+          headers: {
+            'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
+            'x-rapidapi-host': 'ultrafast-url-shortener-with-customizations.p.rapidapi.com',
+            'X-API-KEY': import.meta.env.VITE_RAPID_API_KEY
+          }
+        }
+
+        const analyticsResponse = await axios.request<{ data: { clicks: number } }>(
+          getAnalyticsOptions
+        )
+        analyticsData.push({ linkId, clicks: analyticsResponse.data.data.clicks })
+
+        await updateDoc(doc(dataBase, 'userData', email as string), {
+          linksInfo: arrayUnion(
+            ...linksInfo.map((obj: { linkId: string; clicks: number }) => {
+              if (obj.linkId === linkId) {
+                return { ...obj, clicks: analyticsResponse.data.data.clicks }
+              }
+              return obj
+            })
+          )
+        })
+      }
+      return analyticsData
+    } catch (error: any) {
+      console.error(error)
+      throw error
     }
   }
 
@@ -70,5 +111,5 @@ export const useShortenerStore = defineStore('shortener', () => {
     }
   }
 
-  return { generateLink }
+  return { generateLink, fetchAnalytics }
 })

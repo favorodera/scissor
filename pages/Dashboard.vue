@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
+import { onBeforeMount, onMounted } from 'vue'
 import Form from '../components/Form.vue'
 import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
 import { useTogglersStore } from '../stores/togglers'
 import { useDatabaseStore } from 'root/stores/database'
+import { useShortenerStore } from 'root/stores/shortener'
 
+const { fetchAnalytics } = useShortenerStore()
 const togglers = useTogglersStore()
 const { fetchUserData, name } = useDatabaseStore()
 
 onBeforeMount(() => {
   fetchUserData()
+})
+
+onMounted(() => {
+  fetchAnalytics()
 })
 </script>
 

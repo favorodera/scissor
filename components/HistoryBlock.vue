@@ -1,4 +1,13 @@
 <script setup lang="ts">
+const downloadQrCode = (event: MouseEvent) => {
+  const qrCode = event.target as HTMLImageElement
+  const qrCodeUrl = new URL(qrCode.src)
+  const anchor = document.createElement('a')
+  anchor.href = qrCodeUrl.href
+  anchor.download = 'qr-code.png'
+  anchor.click()
+}
+
 const parsedLinks = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData') as string).linksInfo
   : []
@@ -8,7 +17,11 @@ const parsedLinks = localStorage.getItem('userData')
   <div class="history-block" v-for="link in parsedLinks" :key="link.linkId">
     <div class="qr-code-and-action-container">
       <div class="qr-code">
-        <img :src="'data:image/png;base64,' + link.qrCode" alt="qr-code" />
+        <img
+          :src="'data:image/png;base64,' + link.qrCode"
+          alt="qr-code"
+          @dblclick="downloadQrCode($event)"
+        />
       </div>
       <button class="delete-button">Delete</button>
     </div>
@@ -64,6 +77,7 @@ const parsedLinks = localStorage.getItem('userData')
   @include function.mediaContainers(5rem, 5rem);
   border-radius: 0.25rem;
   background: #000000;
+  cursor: pointer;
 
   img {
     max-width: 5rem;

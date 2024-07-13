@@ -12,6 +12,7 @@ const togglers = useTogglersStore()
         <p class="history-header">History</p>
       </div>
     </div>
+    <p class="download-instruction">Double click on QR code to download</p>
     <div class="history-blocks-container">
       <HistoryBlock />
     </div>
@@ -20,6 +21,7 @@ const togglers = useTogglersStore()
 
 <style scoped lang="scss">
 @use '../scss/functions.scss' as function;
+
 section {
   width: 100%;
   display: flex;
@@ -66,5 +68,9 @@ section[aria-haspopup='true'] {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18.125rem, 1fr));
   gap: 1rem;
+}
+
+.download-instruction {
+  @include function.typography(0.8rem, 400, GilroyBold, #4f9162, 0rem, center);
 }
 </style>

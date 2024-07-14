@@ -24,7 +24,6 @@ export const useAuthenticationStore = defineStore('authentication', () => {
 
       const userDocRef = doc(dataBase, 'userData', user.user?.email as string)
 
-      // Check if the user already has an account
       const userDocSnapshot = await getDoc(userDocRef)
       if (userDocSnapshot.exists() === false) {
         await setDoc(userDocRef, {
@@ -35,13 +34,12 @@ export const useAuthenticationStore = defineStore('authentication', () => {
           },
           linksInfo: []
         })
+      } else {
+        await fetchUserData(user.user?.email as string)
       }
-
-      // Save user email to localStorage
       localStorage.setItem('userEmail', user.user?.email as string)
-
-      await fetchUserData()
-      router.push('/dashboard')
+      await router.push('/dashboard')
+      window.location.reload()
     } catch (error) {
       return null
     }
@@ -52,7 +50,6 @@ export const useAuthenticationStore = defineStore('authentication', () => {
       signOut(auth)
       toggleUserMenu()
 
-      // Clear user-related data from localStorage
       localStorage.removeItem('userEmail')
       localStorage.removeItem('linksInfo')
 

@@ -24,6 +24,9 @@ const togglers = useTogglersStore()
           </button>
         </div>
       </nav>
+
+      <a class="mobile-nav-url" href="#about">Features</a>
+      <a class="mobile-nav-url" href="faq"> FAQs</a>
     </div>
   </Transition>
 </template>
@@ -42,8 +45,20 @@ const togglers = useTogglersStore()
   display: flex;
   flex-direction: column;
   padding: 0.75rem;
+  gap: 2rem;
   align-items: center;
   transition: transform 0.3s ease-in-out;
+}
+
+.mobile-nav-url {
+  width: 100%;
+  @include function.typography(1.125rem, 400, GilroyBold, #ffffff, normal, start);
+  border-bottom: 0.065rem solid #005ae2;
+  transition: all 0.5s ease-in-out;
+}
+
+.mobile-nav-url:hover {
+  color: #0065fe;
 }
 
 .mobile-nav[aria-haspopup='true'] {

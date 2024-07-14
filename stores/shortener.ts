@@ -1,15 +1,6 @@
-import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import {
-  dataBase,
-  doc,
-  arrayRemove,
-  arrayUnion,
-  updateDoc,
-  setDoc,
-  auth
-} from '../ts/firebase-config'
+import { dataBase, doc, arrayUnion, updateDoc, auth } from '../ts/firebase-config'
 import { useDatabaseStore } from './database'
 
 export const useShortenerStore = defineStore('shortener', () => {
@@ -105,7 +96,8 @@ export const useShortenerStore = defineStore('shortener', () => {
           status: 'Active'
         })
       })
-      await fetchUserData()
+      await fetchUserData(email as string)
+      window.location.reload()
     } catch (error) {
       console.error(error)
     }

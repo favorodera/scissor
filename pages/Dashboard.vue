@@ -1,21 +1,19 @@
 <script setup lang="ts">
+import { useDatabaseStore } from 'root/stores/database'
+import { useShortenerStore } from 'root/stores/shortener'
+import { auth } from 'root/ts/firebase-config'
 import { onBeforeMount, onMounted } from 'vue'
 import Form from '../components/Form.vue'
 import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
 import { useTogglersStore } from '../stores/togglers'
-import { useDatabaseStore } from 'root/stores/database'
-import { useShortenerStore } from 'root/stores/shortener'
 
 const { fetchAnalytics } = useShortenerStore()
 const togglers = useTogglersStore()
-const { fetchUserData, name } = useDatabaseStore()
+const { fetchUserData, name, email, userEmail } = useDatabaseStore()
 
 onBeforeMount(() => {
-  fetchUserData()
-})
-
-onMounted(() => {
+  fetchUserData((email as string) || (auth.currentUser?.email as string) || userEmail)
   fetchAnalytics()
 })
 </script>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useTogglersStore } from '../stores/togglers'
+import { useDatabaseStore } from 'root/stores/database'
 import { useAuthenticationStore } from '../stores/authentication'
+import { useTogglersStore } from '../stores/togglers'
 const authentication = useAuthenticationStore()
 const togglers = useTogglersStore()
-import { useDatabaseStore } from 'root/stores/database'
-const { userData, name, image, email } = useDatabaseStore()
+const { image, email } = useDatabaseStore()
 </script>
 
 <template>

@@ -1,20 +1,6 @@
 import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-import {
-  addDoc,
-  auth,
-  collection,
-  dataBase,
-  doc,
-  getDoc,
-  provider,
-  setDoc,
-  signInWithPopup,
-  signOut,
-  updateDoc,
-  arrayUnion,
-  arrayRemove
-} from '../ts/firebase-config'
+import { ref } from 'vue'
+import { dataBase, doc, getDoc } from '../ts/firebase-config'
 
 type userData = {
   userInfo: {
@@ -43,9 +29,9 @@ export const useDatabaseStore = defineStore('database', () => {
   const name = parsedUserData ? JSON.parse(parsedUserData as string).userInfo.name : ''
   const image = parsedUserData ? JSON.parse(parsedUserData as string).userInfo.image : ''
 
-  const fetchUserData = async (): Promise<void> => {
+  const fetchUserData = async (registeredUserEmail: string): Promise<void> => {
     try {
-      const userDocRef = doc(dataBase, 'userData', userEmail)
+      const userDocRef = doc(dataBase, 'userData', registeredUserEmail as string)
       const userDocSnapshot = await getDoc(userDocRef)
       userData.value = {
         userInfo: userDocSnapshot.data()?.userInfo,
@@ -63,6 +49,7 @@ export const useDatabaseStore = defineStore('database', () => {
     email,
     name,
     image,
-    parsedUserData
+    parsedUserData,
+    userEmail
   }
 })

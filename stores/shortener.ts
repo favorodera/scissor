@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { dataBase, doc, arrayUnion, updateDoc, auth } from '../ts/firebase-config'
 import { useDatabaseStore } from './database'
+import { VueElement } from 'vue'
 
 export const useShortenerStore = defineStore('shortener', () => {
   const { fetchUserData, parsedUserData, email } = useDatabaseStore()
@@ -37,7 +38,7 @@ export const useShortenerStore = defineStore('shortener', () => {
   const fetchAnalytics = async (): Promise<Array<{ linkId: string; clicks: number }>> => {
     try {
       const analyticsData: Array<{ linkId: string; clicks: number }> = []
-      const linksInfo = JSON.parse(parsedUserData as string).linksInfo
+      const linksInfo = await JSON.parse(parsedUserData as string).linksInfo
 
       for (const linkInfo of linksInfo) {
         const linkId: string = linkInfo.linkId
@@ -97,7 +98,9 @@ export const useShortenerStore = defineStore('shortener', () => {
         })
       })
       await fetchUserData(email as string)
-      window.location.reload()
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000)
     } catch (error) {
       console.error(error)
     }

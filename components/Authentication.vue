@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAuthenticationStore } from '../stores/authentication'
-const authentication = useAuthenticationStore()
 import { useTogglersStore } from '../stores/togglers'
+const authentication = useAuthenticationStore()
 const togglers = useTogglersStore()
 </script>
 

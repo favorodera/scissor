@@ -1,21 +1,23 @@
 <script setup lang="ts">
-import { useDatabaseStore } from 'root/stores/database'
 import { useAuthenticationStore } from '../stores/authentication'
 import { useTogglersStore } from '../stores/togglers'
 const authentication = useAuthenticationStore()
 const togglers = useTogglersStore()
-const { image, email } = useDatabaseStore()
+
+const parsedUserInfo = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData') as string).userInfo
+  : []
 </script>
 
 <template>
   <Transition name="user-menu" mode="out-in">
     <div class="user-menu" v-if="togglers.isUserMenuOpen === true">
       <div class="user-info">
-        <div class="user-image"><img :src="image" alt="user-image" /></div>
+        <div class="user-image"><img :src="parsedUserInfo.image" alt="user-image" /></div>
 
         <div class="user-details">
-          <p class="username">{{ email.split('@')[0] }}</p>
-          <p class="user-email">{{ email }}</p>
+          <p class="username">{{ parsedUserInfo.email.split('@')[0] }}</p>
+          <p class="user-email">{{ parsedUserInfo.email }}</p>
         </div>
       </div>
       <button class="sign-out-button" @click="authentication.logOut">Sign Out</button>

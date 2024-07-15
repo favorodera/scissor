@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { useDatabaseStore } from 'root/stores/database'
 import { useShortenerStore } from 'root/stores/shortener'
-import { auth } from 'root/ts/firebase-config'
-import { onBeforeMount, onMounted } from 'vue'
+import { onBeforeMount } from 'vue'
 import Form from '../components/Form.vue'
 import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
@@ -10,12 +9,16 @@ import { useTogglersStore } from '../stores/togglers'
 
 const { fetchAnalytics } = useShortenerStore()
 const togglers = useTogglersStore()
-const { fetchUserData, name, email, userEmail } = useDatabaseStore()
+const { fetchUserData, email } = useDatabaseStore()
 
 onBeforeMount(() => {
-  fetchUserData((email as string) || (auth.currentUser?.email as string) || userEmail)
+  fetchUserData(email as string)
   fetchAnalytics()
 })
+
+const parsedUserInfo = localStorage.getItem('userData')
+  ? JSON.parse(localStorage.getItem('userData') as string).userInfo
+  : []
 </script>
 
 <template>
@@ -25,7 +28,7 @@ onBeforeMount(() => {
       <div class="user" @click="togglers.toggleUserMenu">
         <div class="user-text-container">
           <p class="welcome-text">Welcome</p>
-          <p class="username">{{ name.split(' ')[0] }}</p>
+          <p class="username">{{ parsedUserInfo.name.split(' ')[0] }}</p>
         </div>
         <div class="menu-state-icon">
           <Transition name="menu-state-icon" mode="out-in">

@@ -10,8 +10,8 @@ import {
   signInWithPopup,
   signOut
 } from '../ts/firebase-config'
-import { useTogglersStore } from './togglers'
 import { useDatabaseStore } from './database'
+import { useTogglersStore } from './togglers'
 
 export const useAuthenticationStore = defineStore('authentication', () => {
   const { toggleAuthenticationPopup, toggleUserMenu } = useTogglersStore()
@@ -38,8 +38,9 @@ export const useAuthenticationStore = defineStore('authentication', () => {
         await fetchUserData(user.user?.email as string)
       }
       localStorage.setItem('userEmail', user.user?.email as string)
-      await router.push('/dashboard')
-      window.location.reload()
+      setTimeout(() => {
+        router.push('/dashboard')
+      }, 2000)
     } catch (error) {
       return null
     }

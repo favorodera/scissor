@@ -8,13 +8,21 @@ import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
 import { useTogglersStore } from '../stores/togglers'
 
+// Create a reference to the useTogglersStore function
 const togglers = useTogglersStore()
-const { fetchUserData, email } = useDatabaseStore()
 
+// Destructure the fetchUserData property from the useDatabaseStore function
+const { fetchUserData } = useDatabaseStore()
+
+// Call the onBeforeMount function to execute the provided callback function when the component is mounted
 onBeforeMount(() => {
-  fetchUserData(email as string)
+  // Call the fetchUserData function with the parsedUserInfo.email as an argument
+  fetchUserData(parsedUserInfo.email as string)
 })
 
+// Check if there is a 'userData' item in the localStorage
+// If there is, parse the JSON string and retrieve the userInfo property
+// If there isn't, set parsedUserInfo to an empty array
 const parsedUserInfo = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData') as string).userInfo
   : []

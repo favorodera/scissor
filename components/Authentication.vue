@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useAuthenticationStore } from '../stores/authentication'
 import { useTogglersStore } from '../stores/togglers'

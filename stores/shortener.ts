@@ -2,8 +2,6 @@ import { defineStore } from 'pinia'
 import axios from 'axios'
 import { dataBase, doc, arrayUnion, updateDoc, auth } from '../ts/firebase-config'
 import { useDatabaseStore } from './database'
-import { VueElement } from 'vue'
-
 export const useShortenerStore = defineStore('shortener', () => {
   const { fetchUserData, parsedUserData, email } = useDatabaseStore()
 

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'

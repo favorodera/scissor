@@ -1,7 +1,14 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import HistoryBlock from './HistoryBlock.vue'
 import { useTogglersStore } from 'root/stores/togglers'
 const togglers = useTogglersStore()
+import { useShortenerStore } from 'root/stores/shortener'
+const { fetchAnalytics } = useShortenerStore()
+const historyRefresh = () => {
+  fetchAnalytics()
+  window.location.reload()
+}
 </script>
 
 <template>
@@ -11,6 +18,9 @@ const togglers = useTogglersStore()
         <div class="history-icon"><img src="../media/svg/clock.svg" alt="clock" /></div>
         <p class="history-header">History</p>
       </div>
+      <button class="history-refresh" @click="historyRefresh">
+        <img src="../media/svg/refresh.svg" alt="refresh" />
+      </button>
     </div>
     <p class="download-instruction">Double click on QR code to download</p>
     <div class="history-blocks-container">
@@ -36,11 +46,22 @@ section[aria-haspopup='true'] {
   pointer-events: none;
 }
 
+.history-refresh {
+  @include function.mediaContainers(0.9375rem, 0.9375rem);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
 .history-header-panel {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background: #181e29;
   box-shadow: 0rem 0.25rem 0.625rem 0rem #00000026;
   padding: 1.3125rem 1.57425rem 1.3125rem 1.5625rem;

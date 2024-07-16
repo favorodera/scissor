@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useTogglersStore } from 'root/stores/togglers'
 const togglers = useTogglersStore()

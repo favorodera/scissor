@@ -56,7 +56,9 @@ export const useAuthenticationStore = defineStore('authentication', () => {
 
       router.push('/')
       return null
-    } catch (error) {}
+    } catch (error) {
+      return null
+    }
   }
 
   return {

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineComponent } from 'vue'
-
 const downloadQrCode = (event: MouseEvent) => {
   const qrCode = event.target as HTMLImageElement
   const qrCodeUrl = new URL(qrCode.src)

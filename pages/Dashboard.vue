@@ -1,19 +1,18 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useDatabaseStore } from 'root/stores/database'
-import { useShortenerStore } from 'root/stores/shortener'
+
 import { onBeforeMount } from 'vue'
 import Form from '../components/Form.vue'
 import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
 import { useTogglersStore } from '../stores/togglers'
 
-const { fetchAnalytics } = useShortenerStore()
 const togglers = useTogglersStore()
 const { fetchUserData, email } = useDatabaseStore()
 
 onBeforeMount(() => {
   fetchUserData(email as string)
-  fetchAnalytics()
 })
 
 const parsedUserInfo = localStorage.getItem('userData')

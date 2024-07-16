@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import About from '../components/About.vue'
 import Authentication from '../components/Authentication.vue'

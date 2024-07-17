@@ -21,7 +21,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section :aria-haspopup="togglers.isAuthenticationPopupOpen">
+  <section :aria-haspopup="togglers.isAuthenticationPopupOpen" class="hero-section">
     <div class="intro">
       <div class="intro-text-container">
         <p class="intro-text">

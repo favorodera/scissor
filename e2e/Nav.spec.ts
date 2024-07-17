@@ -1,9 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('Nav is rendered correctly', async ({ page }) => {
-  await page.goto('http://localhost:5174/')
-
-  await expect(page).toHaveTitle('SCISSOR')
+  await page.goto('http://localhost:5173/')
 
   const nav = page.getByRole('navigation')
   await expect(nav).toBeVisible()

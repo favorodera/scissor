@@ -22,7 +22,7 @@ onUnmounted(() => {
 
 <template>
   <nav :aria-haspopup="togglers.isAuthenticationPopupOpen">
-    <RouterLink to="/" rel="noopener noreferrer" class="logo-container">
+    <RouterLink to="/" class="logo-container">
       <div class="logo"><img src="../media/svg/scissor.svg" alt="logo" /></div>
       <div class="logo-line"></div>
       <p class="logo-text">SCISSOR</p>

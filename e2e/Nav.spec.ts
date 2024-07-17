@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test('Nav is rendered correctly', async ({ page }) => {
-  await page.goto('https://scissortool.web.app')
+  await page.goto('http://localhost:5174/')
 
   await expect(page).toHaveTitle('SCISSOR')
 

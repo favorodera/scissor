@@ -31,4 +31,6 @@ test('Nav is rendered correctly', async ({ page }) => {
   const loginButton = nav.locator('.login')
   await expect(loginButton).toBeVisible()
   await expect(loginButton).toHaveText('Login')
+  await loginButton.click()
+  await expect(page.locator('.authentication-container')).toBeVisible()
 })

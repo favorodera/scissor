@@ -36,4 +36,16 @@ test('Hero section is rendered correctly', async ({ page }) => {
   await expect(introCtaLink).toBeVisible()
   await expect(introCtaLink).toHaveAttribute('href', '#about')
   await expect(introCtaLink).toContainText('Learn More')
+
+  const heroVisualsContainer = heroContainer.locator('.hero-visuals-container')
+  await expect(heroVisualsContainer).toBeVisible()
+
+  const heroVisualImageContainer = heroVisualsContainer.locator('.hero-visual-image')
+  await expect(heroVisualImageContainer).toBeVisible()
+
+  const heroVisualImages = heroVisualImageContainer.locator('.link')
+  await expect(heroVisualImages).toHaveCount(4)
+
+  const heroVisualTextContainer = heroVisualsContainer.locator('.hero-visual-text')
+  await expect(heroVisualTextContainer).toBeVisible()
 })

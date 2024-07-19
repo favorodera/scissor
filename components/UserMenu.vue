@@ -63,7 +63,6 @@ const parsedUserInfo = localStorage.getItem('userData')
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 0.625rem;
   width: 100%;
   padding: 1rem;
   gap: 1rem;

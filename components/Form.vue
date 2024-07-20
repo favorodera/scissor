@@ -45,6 +45,21 @@ let alias = ''
 
     <button type="submit" @click.prevent="shortener.generateLink(longUrl, alias)">Shorten</button>
   </form>
+  <p
+    class="fetch-state"
+    :style="{
+      color:
+        shortener.fetchState === 'URL Generated Successfully... Refreshing Page...'
+          ? '#4f9162'
+          : shortener.fetchState === 'Awaiting Long URL...'
+            ? '#b79a42'
+            : shortener.fetchState === 'Generating URL... Please wait...'
+              ? '#7078f9'
+              : '#d73726'
+    }"
+  >
+    {{ shortener.fetchState }}
+  </p>
 </template>
 
 <style scoped lang="scss">
@@ -57,6 +72,11 @@ form {
   align-items: center;
   justify-content: center;
   gap: 1rem;
+}
+
+.fetch-state {
+  @include function.typography(0.8rem, 400, GilroyBold, #ffffffcc, 1.75rem, center);
+  letter-spacing: 0.125rem;
 }
 
 .long-url-container,

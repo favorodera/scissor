@@ -1,34 +1,36 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
+import axios, { type AxiosRequestConfig } from 'axios'
 import { dataBase, doc, arrayUnion, updateDoc, auth } from '../ts/firebase-config'
 import { useDatabaseStore } from './database'
+import { ref } from 'vue'
 
 export const useShortenerStore = defineStore('shortener', () => {
   // Import the necessary functions and data from the database store
   const { fetchUserData, parsedUserData } = useDatabaseStore()
 
+  const fetchState = ref<string>('Awaiting Long URL...')
+
   // Define the options for generating a new link
-  const generateLinkOptions = {
+  const generateLinkOptions: AxiosRequestConfig = {
     // Set the HTTP method and URL
     method: 'POST',
-    url: 'https://ultrafast-url-shortener-with-customizations.p.rapidapi.com/ext/api/url/add',
+    url: 'https://url-link-shortener-and-qr-code-generator.p.rapidapi.com/ext/api/url/add',
     headers: {
       // Set the API keys and Content-Type headers
       'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
-      'x-rapidapi-host': 'ultrafast-url-shortener-with-customizations.p.rapidapi.com',
+      'x-rapidapi-host': 'url-link-shortener-and-qr-code-generator.p.rapidapi.com',
       'Content-Type': 'application/json',
       'X-API-KEY': import.meta.env.VITE_RAPID_API_KEY
     },
     // Set the data to be sent in the request body
     data: {
       url: '',
-      domain: '',
-      custom: ''
+      domain: ''
     }
   }
 
   // Define the options for generating a QR code
-  const generateQrCodeOptions = {
+  const generateQrCodeOptions: AxiosRequestConfig = {
     method: 'GET',
     url: 'https://qr-code-generator20.p.rapidapi.com/generatebasicbase64',
     params: {
@@ -40,11 +42,15 @@ export const useShortenerStore = defineStore('shortener', () => {
     }
   }
 
-  // Define an asynchronous function to fetch analytics data
-  const fetchAnalytics = async (): Promise<Array<{ linkId: string; clicks: number }>> => {
+  /**
+   * Fetches analytics data for all generated links.
+   * @returns An array of objects containing linkId and click count.
+   * @throws If an error occurs during the fetch, it will be re-thrown.
+   */
+  const fetchAnalytics = async (): Promise<{ linkId: string; clicks: number }[]> => {
     try {
       // Initialize an array to store the analytics data
-      const analyticsData: Array<{ linkId: string; clicks: number }> = []
+      const analyticsData: { linkId: string; clicks: number }[] = []
       // Get the linksInfo array from the parsed user data
       const linksInfo = await JSON.parse(parsedUserData as string).linksInfo
 
@@ -53,12 +59,12 @@ export const useShortenerStore = defineStore('shortener', () => {
         // Get the linkId from the linkInfo object
         const linkId: string = linkInfo.linkId
         // Set the options for fetching analytics data for the current link
-        const getAnalyticsOptions = {
+        const getAnalyticsOptions: AxiosRequestConfig = {
           method: 'GET',
-          url: `https://ultrafast-url-shortener-with-customizations.p.rapidapi.com/ext/api/url/${linkId}`,
+          url: `https://url-link-shortener-and-qr-code-generator.p.rapidapi.com/ext/api/url/${linkId}`,
           headers: {
             'x-rapidapi-key': import.meta.env.VITE_RAPID_API_KEY,
-            'x-rapidapi-host': 'ultrafast-url-shortener-with-customizations.p.rapidapi.com',
+            'x-rapidapi-host': 'url-link-shortener-and-qr-code-generator.p.rapidapi.com',
             'X-API-KEY': import.meta.env.VITE_RAPID_API_KEY
           }
         }
@@ -90,41 +96,63 @@ export const useShortenerStore = defineStore('shortener', () => {
     }
   }
 
-  // Define an asynchronous function to generate a new link
-  const generateLink = async (longUrl: string, alias: string) => {
+  /**
+   * Generates a new link.
+   * @param longUrl The long URL to be shortened.
+   * @param alias An optional alias for the short URL.
+   * @throws If an error occurs during the link generation, it will be re-thrown.
+   */
+  const generateLink = async (longUrl: string, alias: string): Promise<void> => {
     // Set the data in the generateLinkOptions object with the provided longUrl and alias
     generateLinkOptions.data = {
       url: longUrl,
-      domain: 'https://linkdom.co',
-      custom: alias
+      domain: 'https://linkdom.co'
+    }
+    if (alias !== '') {
+      generateLinkOptions.data.custom = alias
     }
     try {
-      // Send a request to generate a new link and store the response
-      const linkResponse = await axios.request(generateLinkOptions)
-      // Set the data in the generateQrCodeOptions object with the generated short URL
-      generateQrCodeOptions.params.data = linkResponse.data.shorturl
-      // Send a request to generate a QR code for the generated short URL and store the response
-      const qrCodeResponse = await axios.request(generateQrCodeOptions)
+      if (
+        longUrl !== '' ||
+        longUrl.includes('https://') === true ||
+        longUrl.includes('http://') === true
+      ) {
+        fetchState.value = 'Generating URL... Please wait...'
+        // Send a request to generate a new link and store the response
+        const linkResponse = await axios.request(generateLinkOptions)
+        // Set the data in the generateQrCodeOptions object with the generated short URL
+        generateQrCodeOptions.params.data = linkResponse.data.shorturl
+        // Send a request to generate a QR code for the generated short URL and store the response
+        const qrCodeResponse = await axios.request(generateQrCodeOptions)
 
-      // Update the linksInfo array in the userData document in Firestore with the generated link data
-      await updateDoc(doc(dataBase, 'userData', auth.currentUser?.email as string), {
-        linksInfo: arrayUnion({
-          linkId: linkResponse.data.id,
-          longUrl: longUrl,
-          shortUrl: linkResponse.data.shorturl,
-          qrCode: qrCodeResponse.data,
-          timeCreated: new Date().toDateString(),
-          clicks: 0,
-          status: 'Active'
+        // Update the linksInfo array in the userData document in Firestore with the generated link data
+        await updateDoc(doc(dataBase, 'userData', auth.currentUser?.email as string), {
+          linksInfo: arrayUnion({
+            linkId: linkResponse.data.id,
+            longUrl,
+            shortUrl: linkResponse.data.shorturl,
+            qrCode: qrCodeResponse.data,
+            timeCreated: new Date().toDateString(),
+            clicks: 0,
+            status: 'Active'
+          })
         })
-      })
-      // Fetch the updated user data from Firestore
-      await fetchUserData(auth.currentUser?.email as string)
-      // Reload the current page after a short delay to update the UI with the new link information
-      setTimeout(() => {
-        window.location.reload()
-      }, 2000)
+        // Fetch the updated user data from Firestore
+        await fetchUserData(auth.currentUser?.email as string)
+
+        fetchState.value = 'URL Generated Successfully... Refreshing Page...'
+
+        // Reload the current page after a short delay to update the UI with the new link information
+        setTimeout(() => {
+          window.location.reload()
+        }, 3000)
+      } else {
+        fetchState.value = 'Please enter a valid long URL...'
+
+        return
+      }
     } catch (error) {
+      fetchState.value = 'Failed to Generate Link... Please Try Again'
       // Log and re-throw any errors that occur
       console.error(error)
       throw error
@@ -132,5 +160,5 @@ export const useShortenerStore = defineStore('shortener', () => {
   }
 
   // Return an object with the generateLink and fetchAnalytics functions as properties
-  return { generateLink, fetchAnalytics }
+  return { generateLink, fetchAnalytics, fetchState }
 })

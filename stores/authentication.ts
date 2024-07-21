@@ -54,6 +54,11 @@ export const useAuthenticationStore = defineStore('authentication', () => {
           fetchUserData(user.user?.email as string)
         }, 3000)
       }
+
+      // Check if userData is null
+      if(localStorage.getItem('userData') === null) {
+        fetchUserData(user.user?.email as string)
+      }
       // Set user email in local storage
       localStorage.setItem('userEmail', user.user?.email as string)
       // Redirect to dashboard after 2 seconds
@@ -79,7 +84,7 @@ export const useAuthenticationStore = defineStore('authentication', () => {
 
       // Remove user email and links info from local storage
       localStorage.removeItem('userEmail')
-      localStorage.removeItem('linksInfo')
+      localStorage.removeItem('userData')
 
       // Redirect to home page
       router.push('/')

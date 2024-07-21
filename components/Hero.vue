@@ -3,18 +3,24 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { useTogglersStore } from 'root/stores/togglers'
 
+// Get a reference to the Pinia store for managing toggles
 const togglers = useTogglersStore()
 
+// Create a reactive reference to the current window width
 const windowWidth = ref(window.innerWidth)
 
+// Define a function that will be called every time the window size changes
 const windowResize = () => {
+  // Update the reactive reference with the new window width
   windowWidth.value = window.innerWidth
 }
 
+// When the component is mounted, add an event listener to the window resize event
 onMounted(() => {
   window.addEventListener('resize', windowResize)
 })
 
+// When the component is unmounted, remove the event listener from the window resize event
 onUnmounted(() => {
   window.removeEventListener('resize', windowResize)
 })

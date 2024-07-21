@@ -3,18 +3,23 @@
 import { onMounted, onUnmounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useTogglersStore } from '../stores/togglers'
+// Initialize the togglers store
 const togglers = useTogglersStore()
 
+// Create a reference to track the window width
 const windowWidth = ref(window.innerWidth)
 
+// Define a function to update the windowWidth reference on window resize
 const windowResize = () => {
   windowWidth.value = window.innerWidth
 }
 
+// Add a listener for window resize event to call the windowResize function
 onMounted(() => {
   window.addEventListener('resize', windowResize)
 })
 
+// Remove the window resize event listener when the component is unmounted
 onUnmounted(() => {
   window.removeEventListener('resize', windowResize)
 })

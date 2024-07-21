@@ -1,12 +1,23 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
-import HistoryBlock from './HistoryBlock.vue'
-import { useTogglersStore } from 'root/stores/togglers'
-const togglers = useTogglersStore()
 import { useShortenerStore } from 'root/stores/shortener'
+import { useTogglersStore } from 'root/stores/togglers'
+import HistoryBlock from './HistoryBlock.vue'
+// Access the togglers store using the `useTogglersStore` hook.
+// This store might contain state and methods related to UI toggle states (e.g., modals, dropdowns).
+const togglers = useTogglersStore()
+
+// Access the `fetchAnalytics` method from the shortener store using the `useShortenerStore` hook.
+// This method is likely responsible for fetching analytics data, such as click counts or view statistics for shortened URLs.
 const { fetchAnalytics } = useShortenerStore()
+
+// Define the `historyRefresh` function, which is responsible for refreshing the analytics data and then reloading the page.
 const historyRefresh = () => {
+  // Call the `fetchAnalytics` method to update the analytics data.
   fetchAnalytics()
+
+  // Reload the current page to reflect any updates.
+  // This could be used to ensure the user sees the most up-to-date analytics after they are fetched.
   window.location.reload()
 }
 </script>

@@ -1,17 +1,25 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+// Receive props from the parent component
 defineProps({
+  // The question string
   question: {
     type: String,
     required: true
   },
+  // The answer string
   answer: {
     type: String,
     required: true
   }
 })
+
+// Initialize a reactive variable to keep track of whether this FAQ block is open
 const isOpen = ref(false)
+
+// Define a function to toggle the open state of the FAQ block
 const toggleAnswer = () => {
+  // Toggle the open state by setting isOpen to the opposite of what it currently is
   isOpen.value = !isOpen.value
 }
 </script>

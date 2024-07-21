@@ -7,6 +7,7 @@ import Form from '../components/Form.vue'
 import History from '../components/History.vue'
 import UserMenu from '../components/UserMenu.vue'
 import { useTogglersStore } from '../stores/togglers'
+import { auth } from '../ts/firebase-config'
 
 // Create a reference to the useTogglersStore function
 const togglers = useTogglersStore()
@@ -35,7 +36,9 @@ const parsedUserInfo = localStorage.getItem('userData')
       <div class="user" @click="togglers.toggleUserMenu">
         <div class="user-text-container">
           <p class="welcome-text">Welcome</p>
-          <p class="username">{{ parsedUserInfo.name.split(' ')[0] }}</p>
+          <p class="username">
+            {{ auth.currentUser?.displayName?.split(' ')[0] || parsedUserInfo.name.split(' ')[0] }}
+          </p>
         </div>
         <div class="menu-state-icon">
           <Transition name="menu-state-icon" mode="out-in">

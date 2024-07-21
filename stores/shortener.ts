@@ -4,10 +4,12 @@ import { dataBase, doc, arrayUnion, updateDoc, auth } from '../ts/firebase-confi
 import { useDatabaseStore } from './database'
 import { ref } from 'vue'
 
+// Define a Pinia store for managing the shortener functionality
 export const useShortenerStore = defineStore('shortener', () => {
   // Import the necessary functions and data from the database store
   const { fetchUserData, parsedUserData } = useDatabaseStore()
 
+  // Define a reactive state for storing the current state of the fetch
   const fetchState = ref<string>('Awaiting Long URL...')
 
   // Define the options for generating a new link
@@ -90,9 +92,7 @@ export const useShortenerStore = defineStore('shortener', () => {
       // Return the analyticsData array
       return analyticsData
     } catch (error: any) {
-      // Log and re-throw any errors that occur
-      console.error(error)
-      throw error
+      return error
     }
   }
 
@@ -153,9 +153,6 @@ export const useShortenerStore = defineStore('shortener', () => {
       }
     } catch (error) {
       fetchState.value = 'Failed to Generate Link... Please Try Again'
-      // Log and re-throw any errors that occur
-      console.error(error)
-      throw error
     }
   }
 

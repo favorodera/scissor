@@ -140,19 +140,19 @@ export const useShortenerStore = defineStore('shortener', () => {
         // Fetch the updated user data from Firestore
         await fetchUserData(auth.currentUser?.email as string)
 
-        fetchState.value = 'URL Generated Successfully... Refreshing Page...'
+        fetchState.value = 'URL Generated Successfully, Refreshing Page...'
 
         // Reload the current page after a short delay to update the UI with the new link information
         setTimeout(() => {
           window.location.reload()
         }, 3000)
       } else {
-        fetchState.value = 'Please enter a valid long URL...'
+        fetchState.value = 'Please enter a valid long URL'
 
         return
       }
     } catch (error) {
-      fetchState.value = 'Failed to Generate Link... Please Try Again'
+      fetchState.value = 'Failed to Generate Link Please Try Again'
     }
   }
 

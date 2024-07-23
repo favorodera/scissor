@@ -4,10 +4,10 @@
 
 - [About](#about)
 - [Getting Started](#getting-started)
-- [For Casual Users](#for-casual-users)
-- [For Developers](#for-developers)
-- [Using SCISSOR](#using-scissor)
-- [Contributing](#contributing)
+- [For Casual Users](#-for-casual-users)
+- [For Developers](#-for-developers)
+- [Using SCISSOR](✂️-using-scissor)
+- [Contributing](#-contributing)
 
 ## About
 

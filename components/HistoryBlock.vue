@@ -11,6 +11,10 @@ const downloadQrCode = (event: MouseEvent) => {
 const parsedLinks = localStorage.getItem('userData')
   ? JSON.parse(localStorage.getItem('userData') as string).linksInfo
   : []
+
+import { useDatabaseStore } from 'root/stores/database'
+import { auth } from 'root/ts/firebase-config'
+const { deleteLink } = useDatabaseStore()
 </script>
 
 <template>
@@ -23,7 +27,7 @@ const parsedLinks = localStorage.getItem('userData')
           @dblclick="downloadQrCode($event)"
         />
       </div>
-      <button class="delete-button">Delete</button>
+      <button class="delete-button" @click="() => deleteLink(link.linkId)">Delete</button>
     </div>
     <div class="other-history-block-details">
       <div class="long-url">
@@ -32,7 +36,9 @@ const parsedLinks = localStorage.getItem('userData')
       </div>
       <div class="short-url">
         <p class="short-url-header">Shortened:</p>
-        <a :href="link.shortUrl" target="_blank" rel="noopener noreferrer">{{ link.shortUrl }}</a>
+        <a :href="link.shortUrl" target="_blank" rel="noopener noreferrer" id="shortened-url">{{
+          link.shortUrl
+        }}</a>
       </div>
       <div class="time">
         <p class="time-header">Created:</p>

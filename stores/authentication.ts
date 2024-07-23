@@ -56,7 +56,7 @@ export const useAuthenticationStore = defineStore('authentication', () => {
       }
 
       // Check if userData is null
-      if(localStorage.getItem('userData') === null) {
+      if (localStorage.getItem('userData') === null) {
         fetchUserData(user.user?.email as string)
       }
       // Set user email in local storage

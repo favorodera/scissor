@@ -20,6 +20,9 @@ const historyRefresh = () => {
   // This could be used to ensure the user sees the most up-to-date analytics after they are fetched.
   window.location.reload()
 }
+
+import { useDatabaseStore } from 'root/stores/database'
+const database = useDatabaseStore()
 </script>
 
 <template>
@@ -33,7 +36,7 @@ const historyRefresh = () => {
         <img src="../media/svg/refresh.svg" alt="refresh" />
       </button>
     </div>
-    <p class="download-instruction">Double click on QR code to download</p>
+    <p class="download-instruction">{{ database.historyState }}</p>
     <div class="history-blocks-container">
       <HistoryBlock />
     </div>

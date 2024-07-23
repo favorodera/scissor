@@ -1,64 +1,51 @@
-# scissor
+# ✂️ SCISSOR: Shorten URLs with Style!
 
-This template should help get you started developing with Vue 3 in Vite.
+## Table of Contents
 
-## Recommended IDE Setup
+- [About](#about)
+- [Getting Started](#getting-started)
+- [For Developers](#for-developers)
+- [Using SCISSOR](#using-scissor)
+- [Contributing](#contributing)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## About
 
-## Type Support for `.vue` Imports in TS
+SCISSOR is a web application that lets you shorten long URLs and create custom, memorable ones. It provides a simple and intuitive interface for URL shortening and customization.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Getting Started
 
-## Customize configuration
+### For Casual Users
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+SCISSOR is already live! No need for local setup for casual users. Just head over to the hosted application at [https://scissortool.web.app](https://scissortool.web.app) to get started.
 
-## Project Setup
+### For Developers
 
-```sh
-npm install
-```
+If you'd like to contribute to SCISSOR's development, here's how to set up your local development environment:
 
-### Compile and Hot-Reload for Development
+1. Clone the SCISSOR repository using ` git clone https://github.com/favorodera/scissor`.
+2. Navigate inside the project folder: `cd scissor`.
+3. Set up the tools: Install the project's dependencies using `npm install` or `yarn install`.
+4. Run it live! Start the development server to play around with SCISSOR locally: `npm run dev` or `yarn dev`.
 
-```sh
-npm run dev
-```
+## For Developers
 
-### Type-Check, Compile and Minify for Production
+If you'd like to contribute to SCISSOR's development, here's how to set up your local development environment:
 
-```sh
-npm run build
-```
+1. Clone the SCISSOR repository using `git clone https://github.com/favorodera/scissor`.
+2. Navigate inside the project folder: `cd scissor`.
+3. Set up the tools: Install the project's dependencies using `npm install` or `yarn install`.
+4. Run it live! Start the development server to play around with SCISSOR locally: `npm run dev` or `yarn dev`.
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Using SCISSOR
 
-```sh
-npm run test:unit
-```
+Open SCISSOR in your browser at [https://scissortool.web.app](https://scissortool.web.app) and start shortening and customizing URLs to your heart's content!
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+## Contributing
 
-```sh
-# Install browsers for the first run
-npx playwright install
+We welcome contributions to SCISSOR! Here's a quick guide:
 
-# When testing on CI, must build the project first
-npm run build
-
-# Runs the end-to-end tests
-npm run test:e2e
-# Runs the tests only on Chromium
-npm run test:e2e -- --project=chromium
-# Runs the tests of a specific file
-npm run test:e2e -- tests/example.spec.ts
-# Runs the tests in debug mode
-npm run test:e2e -- --debug
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+1. Fork It: Create your own copy of the SCISSOR repository.
+2. New Branch: Make a new branch for your changes: `git checkout -b your-improvement`.
+3. Code Away! Make your modifications and commit them: `git commit -m "Added your contribution"`.
+4. Push It Up: Share your changes: `git push origin your-improvement`.
+5. Pull Request: Let us know about your contribution with a pull request.

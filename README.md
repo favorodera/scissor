@@ -6,7 +6,7 @@
 - [Getting Started](#getting-started)
 - [For Casual Users](#-for-casual-users)
 - [For Developers](#-for-developers)
-- [Using SCISSOR](✂️-using-scissor)
+- [Using SCISSOR](#-using-scissor)
 - [Contributing](#-contributing)
 
 ## About

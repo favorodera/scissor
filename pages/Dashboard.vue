@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup lang="ts">
 import { useDatabaseStore } from 'root/stores/database'
-
+import router from 'root/router/router'
 import { onBeforeMount } from 'vue'
 import Form from '../components/Form.vue'
 import History from '../components/History.vue'
@@ -16,9 +16,21 @@ const togglers = useTogglersStore()
 const { fetchUserData } = useDatabaseStore()
 
 // Call the onBeforeMount function to execute the provided callback function when the component is mounted
-onBeforeMount(() => {
+// The onBeforeMount function is useful for running code when the component is mounted onto the DOM.
+// The callback function we provide will check if there is a 'userData' item in the localStorage.
+// If there isn't, we redirect the user to the home page and return early to avoid running the rest of the callback function.
+onBeforeMount(async () => {
+  // Check if there is a 'userData' item in the localStorage
+  // If the 'userData' item is null, this means that the user has not logged in yet and we need to redirect them to the home page
+  if (localStorage.getItem('userData') === null) {
+    await router.push('/')
+    return
+  }
+
   // Call the fetchUserData function with the parsedUserInfo.email as an argument
-  fetchUserData(parsedUserInfo.email as string)
+  // The fetchUserData function fetches the user data from the database based on the current user's email
+  // The parsedUserInfo.email is obtained from the 'userData' item in the localStorage
+  await fetchUserData(parsedUserInfo.email as string)
 })
 
 // Check if there is a 'userData' item in the localStorage

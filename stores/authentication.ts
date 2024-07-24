@@ -64,7 +64,7 @@ export const useAuthenticationStore = defineStore('authentication', () => {
       // Redirect to dashboard after 2 seconds
       setTimeout(() => {
         router.push('/dashboard')
-      }, 3000)
+      }, 5000)
     } catch (error) {
       // Handle sign in error
       return null

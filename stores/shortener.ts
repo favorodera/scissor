@@ -51,8 +51,9 @@ export const useShortenerStore = defineStore('shortener', () => {
    */
   const fetchAnalytics = async (): Promise<{ linkId: string; clicks: number }[]> => {
     try {
-      // Initialize an array to store the analytics data
-      const analyticsData: { linkId: string; clicks: number }[] = []
+      // Initialize an array to store the analytics data (optional, can be removed)
+      // const analyticsData: { linkId: string; clicks: number }[] = []
+
       // Get the linksInfo array from the parsed user data
       const linksInfo = await JSON.parse(parsedUserData as string).linksInfo
 
@@ -60,6 +61,7 @@ export const useShortenerStore = defineStore('shortener', () => {
       for (const linkInfo of linksInfo) {
         // Get the linkId from the linkInfo object
         const linkId: string = linkInfo.linkId
+
         // Set the options for fetching analytics data for the current link
         const getAnalyticsOptions: AxiosRequestConfig = {
           method: 'GET',
@@ -71,26 +73,28 @@ export const useShortenerStore = defineStore('shortener', () => {
           }
         }
 
-        // Fetch the analytics data for the current link and store it in the analyticsData array
+        // Fetch the analytics data for the current link
         const analyticsResponse = await axios.request<{ data: { clicks: number } }>(
           getAnalyticsOptions
         )
-        analyticsData.push({ linkId, clicks: analyticsResponse.data.data.clicks })
 
-        // Update the linksInfo array in the userData document in Firestore with the updated click count for the current link
+        // Update the click count directly in the existing object within linksInfo
+        linksInfo.find((obj: { linkId: string }) => obj.linkId === linkId).clicks =
+          analyticsResponse.data.data.clicks
+
+        // Update the linksInfo array in the userData document in Firestore
         await updateDoc(doc(dataBase, 'userData', auth.currentUser?.email as string), {
-          linksInfo: arrayUnion(
-            ...linksInfo.map((obj: { linkId: string; clicks: number }) => {
-              if (obj.linkId === linkId) {
-                return { ...obj, clicks: analyticsResponse.data.data.clicks }
-              }
-              return obj
-            })
-          )
+          linksInfo: linksInfo // Update entire linksInfo array with modified clicks
         })
       }
-      // Return the analyticsData array
-      return analyticsData
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 1000)
+
+      // Return the updated linksInfo array
+
+      return linksInfo
     } catch (error: any) {
       return error
     }

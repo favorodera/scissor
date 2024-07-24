@@ -11,16 +11,6 @@ const togglers = useTogglersStore()
 // This method is likely responsible for fetching analytics data, such as click counts or view statistics for shortened URLs.
 const { fetchAnalytics } = useShortenerStore()
 
-// Define the `historyRefresh` function, which is responsible for refreshing the analytics data and then reloading the page.
-const historyRefresh = () => {
-  // Call the `fetchAnalytics` method to update the analytics data.
-  fetchAnalytics()
-
-  // Reload the current page to reflect any updates.
-  // This could be used to ensure the user sees the most up-to-date analytics after they are fetched.
-  window.location.reload()
-}
-
 import { useDatabaseStore } from 'root/stores/database'
 const database = useDatabaseStore()
 </script>
@@ -32,7 +22,7 @@ const database = useDatabaseStore()
         <div class="history-icon"><img src="../media/svg/clock.svg" alt="clock" /></div>
         <p class="history-header">History</p>
       </div>
-      <button class="history-refresh" @click="historyRefresh">
+      <button class="history-refresh" @click="fetchAnalytics()">
         <img src="../media/svg/refresh.svg" alt="refresh" />
       </button>
     </div>
